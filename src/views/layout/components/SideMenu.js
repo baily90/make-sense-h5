@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyanlong
  * @Date: 2021-03-19 00:41:40
- * @LastEditTime: 2021-03-19 02:12:51
+ * @LastEditTime: 2021-03-19 10:48:45
  * @LastEditors: zhangyanlong
  * @Description:
  */
@@ -45,7 +45,7 @@ const SideMenu = () => {
 
   return (
     <Sider trigger={null} collapsible className="app-sider">
-      <div className="logo" style={{ color: 'ffffffa6' }}>
+      <div className="logo">
         Logo
       </div>
       <Menu style={{ height: '50px' }} smode="inline">
