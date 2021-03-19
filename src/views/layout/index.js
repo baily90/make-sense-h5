@@ -7,26 +7,30 @@
  */
 import React from 'react';
 import { connect } from 'react-redux';
-// import { setUserInfo } from '@/redux/actions/userInfo';
 import { Layout } from 'antd';
+
+import PropTypes from 'prop-types';
 import SideMenu from './components/SideMenu';
 import TopHeader from './components/TopHeader';
 import MainContent from './components/MainContent';
 
 // import BreadCrumb from './components/BreadCrumb';
 
-const Index = () => (
-  <div className="layout">
-    <Layout style={{ minHeight: '100vh' }}>
-      <SideMenu />
-      <Layout>
-        <TopHeader />
-        {/* {breadCrumb.show ? <BreadCrumb /> : null} */}
-        <MainContent />
-      </Layout>
+const Index = ({ routesConfig, children }) => (
+  <Layout style={{ height: '100vh' }}>
+    <SideMenu routesConfig={routesConfig} />
+    <Layout>
+      <TopHeader />
+      {/* <BreadCrumb /> */}
+      <MainContent>{children}</MainContent>
     </Layout>
-  </div>
+  </Layout>
 );
+
+Index.propTypes = {
+  routesConfig: PropTypes.array.isRequired,
+  children: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => ({

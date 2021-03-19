@@ -31,5 +31,8 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/forbid-prop-types': 'off',
     'no-debugger': 'off',
+    'linebreak-style': 'off',
+    'no-use-before-define': 'off',
+    'import/no-mutable-exports': 'off',
   },
 };

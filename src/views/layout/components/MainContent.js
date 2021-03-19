@@ -6,24 +6,22 @@
  * @Description:
  */
 import React from 'react';
-import {
-  Redirect, withRouter, Route, Switch,
-} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Layout } from 'antd';
-import routes from '../../../router/routes';
+import PropTypes from 'prop-types';
 
 const { Content } = Layout;
 
-const MainContent = () => (
+const MainContent = ({ children }) => (
   <Content style={{ padding: '15px' }}>
-    <Switch>
-      {routes.map((ele) => <Route render={() => <ele.component />} key={ele.path} path={ele.path} />)}
-      <Redirect from="/" exact to="/home" />
-      <Redirect to="/404" />
-    </Switch>
+    {children}
   </Content>
 );
+
+MainContent.propTypes = {
+  children: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = (state) => ({ userInfo: state.userInfo });
 export default withRouter(connect(mapStateToProps)(MainContent));

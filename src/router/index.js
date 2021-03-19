@@ -5,19 +5,14 @@
  * @LastEditors: zhangyanlong
  * @Description:
  */
-import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
-import AuthRouter from '../views/auth';
-import Login from '../views/login';
-import Layout from '../views/layout';
+let routes = [];
+const routerContext = require.context('./modules', true, /\.js$/);
+routerContext.keys().forEach((router) => {
+  if (router.indexOf('./index') === 0) {
+    return;
+  }
+  const routerModule = routerContext(router);
+  routes = [...routes, ...(routerModule.default || routerModule)];
+});
 
-const Router = () => (
-  <HashRouter>
-    <Switch>
-      <Route component={Login} exact path="/login" />
-      <AuthRouter path="/" component={Layout} />
-    </Switch>
-  </HashRouter>
-);
-
-export default Router;
+export default routes;

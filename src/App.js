@@ -5,19 +5,51 @@
  * @LastEditors: zhangyanlong
  * @Description:
  */
-import React from 'react';
-import { Provider } from 'react-redux';
-// import { hot } from 'react-hot-loader/root';
-// import { Button } from 'antd';
-import store from './redux/store';
-import Router from './router/index';
+import React, { useEffect, useState } from 'react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import Login from './views/login';
+import Layout from './views/layout';
 import './assets/css/app.scss';
 import './assets/css/common.scss';
 
-const App = () => (
-  <Provider store={store}>
-    <Router />
-  </Provider>
-);
+import routers from './router';
+
+const App = () => {
+  const [routes, setRoutes] = useState([]);
+  const [menuConfig, setMenu] = useState([]);
+  useEffect(() => {
+    initAuthority();
+  }, []);
+  const initAuthority = () => {
+    const arr = [];
+    routers.forEach((item) => {
+      if (item.path) {
+        arr.push(item);
+      } else {
+        arr.push(...item.children);
+      }
+    });
+    const getRoutes = routers;
+    setRoutes(arr);
+    setMenu(getRoutes);
+  };
+  return (
+    <HashRouter>
+      <Switch>
+        <Route path="/login" exact component={Login} />
+        <Layout routesConfig={menuConfig}>
+          {routes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              exact
+              render={(props) => <route.component {...props} />}
+            />
+          ))}
+        </Layout>
+      </Switch>
+    </HashRouter>
+  );
+};
 
 export default App;
