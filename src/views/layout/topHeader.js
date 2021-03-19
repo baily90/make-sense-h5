@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyanlong
  * @Date: 2021-03-19 00:41:40
- * @LastEditTime: 2021-03-19 10:38:08
+ * @LastEditTime: 2021-03-20 02:37:45
  * @LastEditors: zhangyanlong
  * @Description:
  */
@@ -10,7 +10,7 @@ import { Icon } from 'antd';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { setCollapse, setBreadCrumb } from '../../../redux/actions/setting';
+import { setCollapse, setBreadCrumb } from '../../redux/actions/setting';
 
 const TopHeader = () => {
   const toggle = () => {};

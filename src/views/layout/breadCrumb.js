@@ -1,14 +1,14 @@
 /*
  * @Author: zhangyanlong
  * @Date: 2021-03-19 00:41:40
- * @LastEditTime: 2021-03-19 01:01:16
+ * @LastEditTime: 2021-03-20 02:37:36
  * @LastEditors: zhangyanlong
  * @Description:
  */
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { Breadcrumb, Icon } from 'antd';
-import menus from '../../../router/menus';
+import menus from '../../router/menus';
 
 const createBreadCrumbData = (location, data) => {
   const arrA = [];
