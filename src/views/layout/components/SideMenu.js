@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyanlong
  * @Date: 2021-03-19 00:41:40
- * @LastEditTime: 2021-03-19 10:48:45
+ * @LastEditTime: 2021-03-19 10:58:11
  * @LastEditors: zhangyanlong
  * @Description:
  */
@@ -48,7 +48,7 @@ const SideMenu = () => {
       <div className="logo">
         Logo
       </div>
-      <Menu style={{ height: '50px' }} smode="inline">
+      <Menu style={{ height: '50px' }} theme="dark">
         {renderMenu(menus)}
       </Menu>
     </Sider>
