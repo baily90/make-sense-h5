@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyanlong
  * @Date: 2021-03-19 00:17:16
- * @LastEditTime: 2021-03-19 10:42:05
+ * @LastEditTime: 2021-03-20 02:27:35
  * @LastEditors: zhangyanlong
  * @Description:
  */
@@ -16,7 +16,7 @@ import routers from './router';
 
 const App = () => {
   const [routes, setRoutes] = useState([]);
-  const [menuConfig, setMenu] = useState([]);
+  const [menuConfig, setMenus] = useState([]);
   useEffect(() => {
     initAuthority();
   }, []);
@@ -31,7 +31,7 @@ const App = () => {
     });
     const getRoutes = routers;
     setRoutes(arr);
-    setMenu(getRoutes);
+    setMenus(getRoutes);
   };
   return (
     <HashRouter>
