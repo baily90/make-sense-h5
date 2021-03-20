@@ -5,6 +5,11 @@
  * @LastEditors: zhangyanlong
  * @Description:
  */
-const Home = () => (<>Home</>);
+const Home = () => (
+  <>
+    <p style={{ height: '500px' }}>1</p>
+    <p style={{ height: '500px' }}>1</p>
+  </>
+);
 
 export default Home;

@@ -12,6 +12,7 @@ import Login from './views/login';
 import './assets/css/app.scss';
 import './assets/css/common.scss';
 import TopHeader from './views/layout/topHeader';
+import BreadCrumb from './views/layout/breadCrumb';
 import SideMenu from './views/layout/sideMenu';
 import routers from './router';
 
@@ -43,8 +44,8 @@ const App = () => {
           <SideMenu routesConfig={menuConfig} />
           <Layout>
             <TopHeader />
-            {/* <BreadCrumb /> */}
-            <Content style={{ padding: '15px' }}>
+            <BreadCrumb />
+            <Content style={{ margin: '15px', background: '#fff' }}>
               {routes.map((route) => (
                 <Route
                   key={route.path}

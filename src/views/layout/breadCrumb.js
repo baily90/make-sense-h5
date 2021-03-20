@@ -6,9 +6,9 @@
  * @Description:
  */
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
-import { Breadcrumb, Icon } from 'antd';
-import menus from '../../router/menus';
+import { useHistory, Link } from 'react-router-dom';
+import { Breadcrumb } from 'antd';
+import menus from '../../router';
 
 const createBreadCrumbData = (location, data) => {
   const arrA = [];
@@ -48,24 +48,25 @@ const createBreadCrumbData = (location, data) => {
       });
     }
   });
-  // console.log(arrA, arrB, arrC);
   return [...arrA, ...arrB, ...arrC];
 };
 
-const BreadCrumb = ({ location }) => {
+const BreadCrumb = () => {
+  const history = useHistory();
+  const { location } = history;
   const routes = createBreadCrumbData(location, menus);
   if (!routes.length) return null;
-  const itemRender = (route, params, routes, paths) => {
+  const itemRender = (route) => {
     const last = routes.indexOf(route) === routes.length - 1;
     return last ? (
       <Link to={route.path}>
-        {route.icon && <Icon type={route.icon} />}
+        {route.icon}
         {' '}
         {route.title}
       </Link>
     ) : (
       <span>
-        {route.icon && <Icon type={route.icon} />}
+        {route.icon}
         {' '}
         {route.title}
       </span>
@@ -75,7 +76,7 @@ const BreadCrumb = ({ location }) => {
     <div className="breadCrumb">
       <Breadcrumb routes={routes} itemRender={itemRender} />
     </div>
-	 );
+  );
 };
 
-export default withRouter(BreadCrumb);
+export default BreadCrumb;
