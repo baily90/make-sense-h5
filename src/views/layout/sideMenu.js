@@ -6,8 +6,8 @@
  * @Description:
  */
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter, useHistory, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useHistory, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
@@ -58,19 +58,19 @@ const renderMenuItem = (item) => {
 };
 
 const SideMenu = ({ routesConfig }) => {
+  const isCollapsed = useSelector((state) => state.collapse.isCollapsed);
   const history = useHistory();
   const defaultSelectedKeys = history.location.pathname;
   const defaultOpenKeys = `/${defaultSelectedKeys.split('/')[1]}`;
   return (
-    <Sider trigger={null} collapsible className="app-sider">
-      <div className="logo">
-        Logo
-      </div>
+    <Sider trigger={null} collapsible collapsed={isCollapsed} className="app-sider">
+      <div className="logo" />
       <Menu
         defaultOpenKeys={[defaultOpenKeys]}
         defaultSelectedKeys={[defaultSelectedKeys]}
         selectedKeys={[defaultSelectedKeys]}
         theme="dark"
+        mode="inline"
       >
         {renderMenu(routesConfig)}
       </Menu>
@@ -80,13 +80,5 @@ const SideMenu = ({ routesConfig }) => {
 SideMenu.propTypes = {
   routesConfig: PropTypes.array.isRequired,
 };
-const mapStateToProps = (state) => state;
-const mapDispatchToProps = (dispatch) => ({
-  setUserInfo: (data) => {
-    dispatch(data);
-  },
-});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withRouter(SideMenu));
+
+export default SideMenu;

@@ -7,10 +7,11 @@ $borderColor: #d8d8d8;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 64px;
+		margin: 16px;
+		height: 32px;
 		color: #fff;
 		font-size: 28px;
-		background: transparent;
+		background: hsla(0,0%,100%,.2);
 	}
 }
 

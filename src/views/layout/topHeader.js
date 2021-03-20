@@ -6,33 +6,27 @@
  * @Description:
  */
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
-import { setCollapse, setBreadCrumb } from '../../redux/actions/setting';
+import { setCollapse } from '../../redux/actions/setting';
 
 const { Header } = Layout;
+
 const TopHeader = () => {
-  const toggle = () => {};
+  const isCollapsed = useSelector((state) => state.collapse.isCollapsed);
+  const dispatch = useDispatch();
+
+  const toggle = () => {
+    dispatch(setCollapse({ isCollapsed: !isCollapsed }));
+  };
+
   return (
     <Header className="top-header">
-      {true ? <MenuFoldOutlined onClick={toggle} /> : <MenuUnfoldOutlined />}
+      {isCollapsed ? <MenuUnfoldOutlined onClick={toggle} /> : <MenuFoldOutlined onClick={toggle} />}
       <div className="header-title">后台管理系统</div>
     </Header>
   );
 };
 
-const mapStateToProps = (state) => state;
-const mapDispatchToProps = (dispatch) => ({
-  setCollapse: (data) => {
-    dispatch(setCollapse(data));
-  },
-  setBreadCrumb: (data) => {
-    dispatch(setBreadCrumb(data));
-  },
-});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withRouter(TopHeader));
+export default TopHeader;
