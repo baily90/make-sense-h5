@@ -8,7 +8,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, useHistory, Link } from 'react-router-dom';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu } from 'antd';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
@@ -24,7 +24,7 @@ const renderMenu = (config) => config.map((item, index) => {
         key={unicode}
         title={(
           <>
-            <Icon type={icon} />
+            {icon}
             <span>
               {title}
             </span>
@@ -48,7 +48,7 @@ const renderMenuItem = (item) => {
   return (
     <Menu.Item key={path}>
       <Link to={path}>
-        <Icon type={icon} />
+        {icon}
         <span>
           {title}
         </span>
@@ -66,7 +66,12 @@ const SideMenu = ({ routesConfig }) => {
       <div className="logo">
         Logo
       </div>
-      <Menu style={{ height: '50px' }} defaultOpenKeys={[defaultOpenKeys]} defaultSelectedKeys={[defaultSelectedKeys]} selectedKeys={[defaultSelectedKeys]} theme="dark">
+      <Menu
+        defaultOpenKeys={[defaultOpenKeys]}
+        defaultSelectedKeys={[defaultSelectedKeys]}
+        selectedKeys={[defaultSelectedKeys]}
+        theme="dark"
+      >
         {renderMenu(routesConfig)}
       </Menu>
     </Sider>
