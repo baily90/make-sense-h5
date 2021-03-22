@@ -7,7 +7,7 @@
  */
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
@@ -58,8 +58,8 @@ const renderMenuItem = (item) => {
 
 const SideMenu = ({ routesConfig }) => {
   const isCollapsed = useSelector((state) => state.collapse.isCollapsed);
-  const history = useHistory();
-  const defaultSelectedKeys = history.location.pathname; // 默认选中的菜单项
+  const location = useLocation();
+  const defaultSelectedKeys = location.pathname; // 默认选中的菜单项
   const defaultOpenKeys = `/${defaultSelectedKeys.split('/')[1]}`; // 默认展开的菜单项
   return (
     <Sider trigger={null} collapsible collapsed={isCollapsed} className="app-sider">

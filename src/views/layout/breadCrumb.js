@@ -6,13 +6,12 @@
  * @Description:
  */
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Breadcrumb } from 'antd';
 import menus from '../../router';
 
 const createBreadCrumbData = (data) => {
-  const history = useHistory();
-  const { location } = history;
+  const location = useLocation();
   const arrA = [];
   const arrB = [];
   const arrC = [];
