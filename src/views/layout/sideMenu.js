@@ -14,7 +14,6 @@ import get from 'lodash/get';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
-
 const renderMenu = (config) => config.map((item, index) => {
   const { children, icon, title } = item;
   if (children) {
@@ -60,15 +59,14 @@ const renderMenuItem = (item) => {
 const SideMenu = ({ routesConfig }) => {
   const isCollapsed = useSelector((state) => state.collapse.isCollapsed);
   const history = useHistory();
-  const defaultSelectedKeys = history.location.pathname;
-  const defaultOpenKeys = `/${defaultSelectedKeys.split('/')[1]}`;
+  const defaultSelectedKeys = history.location.pathname; // 默认选中的菜单项
+  const defaultOpenKeys = `/${defaultSelectedKeys.split('/')[1]}`; // 默认展开的菜单项
   return (
     <Sider trigger={null} collapsible collapsed={isCollapsed} className="app-sider">
       <div className="logo" />
       <Menu
         defaultOpenKeys={[defaultOpenKeys]}
         defaultSelectedKeys={[defaultSelectedKeys]}
-        selectedKeys={[defaultSelectedKeys]}
         theme="dark"
         mode="inline"
       >

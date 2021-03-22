@@ -10,7 +10,9 @@ import { useHistory, Link } from 'react-router-dom';
 import { Breadcrumb } from 'antd';
 import menus from '../../router';
 
-const createBreadCrumbData = (location, data) => {
+const createBreadCrumbData = (data) => {
+  const history = useHistory();
+  const { location } = history;
   const arrA = [];
   const arrB = [];
   const arrC = [];
@@ -52,20 +54,18 @@ const createBreadCrumbData = (location, data) => {
 };
 
 const BreadCrumb = () => {
-  const history = useHistory();
-  const { location } = history;
-  const routes = createBreadCrumbData(location, menus);
+  const routes = createBreadCrumbData(menus);
   if (!routes.length) return null;
   const itemRender = (route) => {
     const last = routes.indexOf(route) === routes.length - 1;
     return last ? (
-      <Link to={route.path}>
+      <Link key={route.path} to={route.path}>
         {route.icon}
         {' '}
         {route.title}
       </Link>
     ) : (
-      <span>
+      <span key={route.path}>
         {route.icon}
         {' '}
         {route.title}

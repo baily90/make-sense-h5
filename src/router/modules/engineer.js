@@ -1,12 +1,12 @@
 import { HomeOutlined } from '@ant-design/icons';
-import Home from '../../views/home';
+import Engineer from '../../views/engineer';
 
 export default [
   {
-    title: '首页',
-    path: '/',
+    title: '工程师管理',
+    path: '/engineer',
     icon: <HomeOutlined />,
     isMenu: true,
-    component: Home,
+    component: Engineer,
   },
 ];

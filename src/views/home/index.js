@@ -7,8 +7,9 @@
  */
 const Home = () => (
   <>
-    <p style={{ height: '500px' }}>1</p>
-    <p style={{ height: '500px' }}>1</p>
+    home
+    {/* <p style={{ height: '500px' }}>1</p> */}
+    {/* <p style={{ height: '500px' }}>1</p> */}
   </>
 );
 
