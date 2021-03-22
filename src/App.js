@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyanlong
  * @Date: 2021-03-19 00:17:16
- * @LastEditTime: 2021-03-20 02:47:49
+ * @LastEditTime: 2021-03-23 00:14:22
  * @LastEditors: zhangyanlong
  * @Description:
  */
@@ -45,7 +45,7 @@ const App = () => {
           <Layout>
             <TopHeader />
             <BreadCrumb />
-            <Content style={{ margin: '15px', background: '#fff' }}>
+            <Content style={{ margin: '15px', padding: '15px', background: '#fff' }}>
               {routes.map((route) => (
                 <Route
                   key={route.path}
