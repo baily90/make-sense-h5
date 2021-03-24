@@ -8,6 +8,7 @@
 import React, { useEffect, useState } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
+import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
 import Login from './views/login';
 import './assets/css/app.scss';
 import './assets/css/common.scss';
@@ -33,8 +34,10 @@ const App = () => {
       }
     });
     const getRoutes = routers;
-    setRoutes(arr);
-    setMenus(getRoutes);
+    batchedUpdates(() => {
+      setRoutes(arr);
+      setMenus(getRoutes);
+    });
   };
   return (
     <HashRouter>
