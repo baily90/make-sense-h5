@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useDynamicTableSize } from '../common/hooks';
 
 const DynamicTable = memo(({
-  dataSource, rowKey, pageData, sizeChange, changeFunc, ...props
+  dataSource, rowKey, paginationData, sizeChange, changeFunc, ...props
 }) => {
   const { width, height } = useDynamicTableSize();
 
@@ -22,10 +22,10 @@ const DynamicTable = memo(({
       pagination={{
         showSizeChanger: true,
         showQuickJumper: true,
-        showTotal: () => `共${pageData.total}条`,
-        pageSize: Number(pageData.perPage),
-        current: Number(pageData.currentPage),
-        total: Number(pageData.total),
+        showTotal: () => `共${paginationData.total}条`,
+        pageSize: Number(paginationData.perPage),
+        current: Number(paginationData.currentPage),
+        total: Number(paginationData.total),
         size: 'small',
         onShowSizeChange: (current, pageSize) => sizeChange(pageSize),
         onChange: (current, pageSize) => changeFunc(current, pageSize),
@@ -42,7 +42,7 @@ DynamicTable.defaultProps = {
   sizeChange: () => {},
   changeFunc: () => {},
   rowSelection: null,
-  pageData: {
+  paginationData: {
     perPage: 20,
     total: 0,
     currentPage: 1,
@@ -56,7 +56,7 @@ DynamicTable.propTypes = {
   sizeChange: PropTypes.func,
   changeFunc: PropTypes.func,
   rowSelection: PropTypes.object,
-  pageData: PropTypes.shape({
+  paginationData: PropTypes.shape({
     perPage: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,

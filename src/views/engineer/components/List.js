@@ -14,6 +14,7 @@ import columns from '../config/columns';
 const List = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [dataSource, setDataSource] = useState([]);
+  const [paginationData, setPaginationData] = useState({});
   const arr = [];
   '1234567890qwertyuioasdfghjklzxcvbnm'.split('').forEach((item, index) => {
     arr.push({
@@ -31,6 +32,7 @@ const List = () => {
       batchedUpdates(() => {
         setDataSource(arr);
         setIsLoading(false);
+        setPaginationData({ total: 100, perPage: 20, currentPage: 1 });
       });
     }, 1000);
   }, []);
@@ -43,11 +45,12 @@ const List = () => {
   };
   return (
     <DynamicTable
+      loading={isLoading}
       dataSource={dataSource}
       columns={columns}
+      paginationData={paginationData}
       sizeChange={sizeChange}
       changeFunc={changeFunc}
-      loading={isLoading}
     />
   );
 };
