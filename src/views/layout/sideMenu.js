@@ -70,7 +70,6 @@ const SideMenu = ({ routesConfig }) => {
         theme="dark"
         mode="inline"
       >
-        {/* <Menu.Item key="5">Option 5</Menu.Item> */}
         {renderMenu(routesConfig)}
       </Menu>
     </Sider>

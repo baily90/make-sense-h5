@@ -5,42 +5,49 @@
  * @LastEditors: zhangyanlong
  * @Description:
  */
-import { Table } from 'antd';
+import { useEffect, useState } from 'react';
+
+import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
+import DynamicTable from '../../../components/DynamicTable';
+import columns from '../config/columns';
 
 const List = () => {
-  const dataSource = [
-  ];
-  '1234567890qwertyuio'.split('').forEach((item, index) => {
-    dataSource.push({
+  const [isLoading, setIsLoading] = useState(true);
+  const [dataSource, setDataSource] = useState([]);
+  const arr = [];
+  '1234567890qwertyuioasdfghjklzxcvbnm'.split('').forEach((item, index) => {
+    arr.push({
       key: index,
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号',
+      c1: 'BZS0000001',
+      c2: '吴彦祖',
+      c3: '186****3660',
+      c4: '甲状腺、颈动脉',
+      c5: '2020-10-24',
+      c6: '正常',
     });
   });
+  useEffect(() => {
+    setTimeout(() => {
+      batchedUpdates(() => {
+        setDataSource(arr);
+        setIsLoading(false);
+      });
+    }, 1000);
+  }, []);
 
-  const columns = [
-    {
-      title: '姓名',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: '年龄',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: '住址',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ];
+  const sizeChange = (pageSize) => {
+    console.log(`sizeChange, pageSize:${pageSize}`);
+  };
+  const changeFunc = (current, pageSize) => {
+    console.log(`changeFunc, current: ${current}, pageSize:${pageSize}`);
+  };
   return (
-    <Table
-      size="middle"
+    <DynamicTable
       dataSource={dataSource}
       columns={columns}
+      sizeChange={sizeChange}
+      changeFunc={changeFunc}
+      loading={isLoading}
     />
   );
 };

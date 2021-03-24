@@ -34,5 +34,6 @@ module.exports = {
     'linebreak-style': 'off',
     'no-use-before-define': 'off',
     'import/no-mutable-exports': 'off',
+    'consistent-return': 'off',
   },
 };

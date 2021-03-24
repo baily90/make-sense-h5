@@ -7,3 +7,4 @@
  */
 export const SET_BREADCRUMB = 'SET_BREADCRUMB';
 export const SET_COLLAPSE = 'SET_COLLAPSE';
+export const ENGINEER_FETCH_DATA = 'ENGINEER_FETCH_DATA';
