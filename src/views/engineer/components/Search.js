@@ -14,6 +14,7 @@ const { Option } = Select;
 const Search = () => {
   const [form] = Form.useForm();
   const onFinish = (values) => {
+    console.log(form);
     console.log(values);
   };
 
@@ -23,18 +24,18 @@ const Search = () => {
 
   return (
     <Form
-      form={form}
       layout="inline"
+      form={form}
+      initialValues={{ type: 'code' }}
       onFinish={onFinish}
     >
       <Form.Item
-        name="gender"
-        label="Gender"
+        name="type"
       >
-        <Select defaultValue="male" style={{ width: 120 }}>
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
+        <Select style={{ width: 150 }}>
+          <Option value="code">标注工程师编号</Option>
+          <Option value="no">标注工程师账号</Option>
+          <Option value="name">标注工程师姓名</Option>
         </Select>
       </Form.Item>
 
