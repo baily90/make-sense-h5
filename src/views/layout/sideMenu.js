@@ -57,7 +57,7 @@ const renderMenuItem = (item) => {
 };
 
 const SideMenu = ({ routesConfig }) => {
-  const isCollapsed = useSelector((state) => state.collapse.isCollapsed);
+  const isCollapsed = useSelector((state) => state.setting.isCollapsed);
   const location = useLocation();
   const defaultSelectedKeys = location.pathname; // 默认选中的菜单项
   const defaultOpenKeys = `/${defaultSelectedKeys.split('/')[1]}`; // 默认展开的菜单项

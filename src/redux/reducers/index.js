@@ -6,8 +6,9 @@
  * @Description:
  */
 import { combineReducers } from 'redux';
-import { breadCrumb, collapse } from './setting';
+import setting from './setting';
+import engineer from './engineer';
 
 export default combineReducers({
-  breadCrumb, collapse,
+  setting, engineer,
 });

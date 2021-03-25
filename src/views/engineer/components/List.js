@@ -5,37 +5,13 @@
  * @LastEditors: zhangyanlong
  * @Description:
  */
-import { useEffect, useState } from 'react';
-
-import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
+import { useSelector } from 'react-redux';
 import DynamicTable from '../../../components/DynamicTable';
 import columns from '../config/columns';
 
 const List = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [dataSource, setDataSource] = useState([]);
-  const [paginationData, setPaginationData] = useState({});
-  const arr = [];
-  '1234567890qwertyuioasdfghjklzxcvbnm'.split('').forEach((item, index) => {
-    arr.push({
-      key: index,
-      c1: 'BZS0000001',
-      c2: '吴彦祖',
-      c3: '186****3660',
-      c4: '甲状腺、颈动脉',
-      c5: '2020-10-24',
-      c6: '正常',
-    });
-  });
-  useEffect(() => {
-    setTimeout(() => {
-      batchedUpdates(() => {
-        setDataSource(arr);
-        setIsLoading(false);
-        setPaginationData({ total: 100, perPage: 20, currentPage: 1 });
-      });
-    }, 1000);
-  }, []);
+  const dataSource = useSelector((state) => state.engineer.dataSource);
+  const loading = useSelector((state) => state.engineer.loading);
 
   const sizeChange = (pageSize) => {
     console.log(`sizeChange, pageSize:${pageSize}`);
@@ -43,12 +19,13 @@ const List = () => {
   const changeFunc = (current, pageSize) => {
     console.log(`changeFunc, current: ${current}, pageSize:${pageSize}`);
   };
+  console.log('渲染List');
   return (
     <DynamicTable
-      loading={isLoading}
-      dataSource={dataSource}
+      loading={loading}
+      dataSource={dataSource.users}
       columns={columns}
-      paginationData={paginationData}
+      paginationData={{ total: dataSource.total, perPage: dataSource.perPage, currentPage: dataSource.currentPage }}
       sizeChange={sizeChange}
       changeFunc={changeFunc}
     />

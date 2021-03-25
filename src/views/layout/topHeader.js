@@ -14,7 +14,7 @@ import { setCollapse } from '../../redux/actions/setting';
 const { Header } = Layout;
 
 const TopHeader = () => {
-  const isCollapsed = useSelector((state) => state.collapse.isCollapsed);
+  const isCollapsed = useSelector((state) => state.setting.isCollapsed);
   const dispatch = useDispatch();
 
   const toggle = () => {

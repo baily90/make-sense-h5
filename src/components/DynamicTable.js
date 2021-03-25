@@ -7,6 +7,7 @@ const DynamicTable = memo(({
   dataSource, rowKey, paginationData, sizeChange, changeFunc, ...props
 }) => {
   const { width, height } = useDynamicTableSize();
+
   console.log('渲染DynamicTable', width, height, dataSource);
   return (
     <Table

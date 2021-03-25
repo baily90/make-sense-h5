@@ -6,17 +6,26 @@
  * @Description:
  */
 import {
-  Form, Select, Button,
+  Form, Select, Button, Input,
 } from 'antd';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getEngineerList } from '../../../redux/actionCreators/engineer';
 
 const { Option } = Select;
 
 const Search = () => {
+  const dispatch = useDispatch();
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log(form);
     console.log(values);
   };
+
+  useEffect(() => {
+    const action = getEngineerList();
+    dispatch(action);
+  }, []);
 
   const onReset = () => {
     form.resetFields();
@@ -26,10 +35,10 @@ const Search = () => {
     <Form
       layout="inline"
       form={form}
-      initialValues={{ type: 'code' }}
       onFinish={onFinish}
     >
       <Form.Item
+        initialValue="no"
         name="type"
       >
         <Select style={{ width: 150 }}>
@@ -38,7 +47,11 @@ const Search = () => {
           <Option value="name">标注工程师姓名</Option>
         </Select>
       </Form.Item>
-
+      <Form.Item
+        name="value"
+      >
+        <Input style={{ width: 150 }} />
+      </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">
           查询

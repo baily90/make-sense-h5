@@ -5,25 +5,13 @@
  * @LastEditors: zhangyanlong
  * @Description:
  */
-import * as actionTypes from '../actionTypes';
+import { SET_COLLAPSE } from '../actionTypes';
 
-const breadCrumbState = localStorage.getItem('breadCrumb') ? JSON.parse(localStorage.getItem('breadCrumb')) : { show: true };
-
-const breadCrumb = (state = breadCrumbState, action) => {
+export default (state = { isCollapsed: false }, action) => {
   switch (action.type) {
-    case actionTypes.SET_BREADCRUMB:
+    case SET_COLLAPSE:
       return action.data;
     default:
       return state;
   }
 };
-const collapse = (state = { isCollapsed: false }, action) => {
-  switch (action.type) {
-    case actionTypes.SET_COLLAPSE:
-      return action.data;
-    default:
-      return state;
-  }
-};
-
-export { breadCrumb, collapse };

@@ -1,15 +1,15 @@
-import * as actionTypes from '../actionTypes';
+import { GET_LIST_ENGINEER, SET_LOADING_ENGINEER } from '../actionTypes';
 
-const fetchData = (data) => ({
-  type: actionTypes.ENGINEER_FETCH_DATA,
+const getListAction = (data) => ({
+  type: GET_LIST_ENGINEER,
   data,
 });
-const fetchData1 = (data) => ({
-  type: actionTypes.ENGINEER_FETCH_DATA,
+const setLoadingAction = (data) => ({
+  type: SET_LOADING_ENGINEER,
   data,
 });
 
 export {
-  fetchData,
-  fetchData1,
+  getListAction,
+  setLoadingAction,
 };
