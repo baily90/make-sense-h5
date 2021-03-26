@@ -7,7 +7,6 @@ const DynamicTable = memo(({
   dataSource, rowKey, paginationData, sizeChange, changeFunc, ...props
 }) => {
   const { width, height } = useDynamicTableSize();
-
   console.log('渲染DynamicTable', width, height, dataSource);
   return (
     <Table
@@ -16,7 +15,7 @@ const DynamicTable = memo(({
       bordered
       size="small"
       dataSource={dataSource}
-      rowKey={(record, index) => (rowKey ? record[rowKey] : index)}
+      rowKey={(record) => record[rowKey]}
       scroll={{ scrollToFirstRowOnChange: true, x: width, y: height }}
       style={{ height }}
       pagination={{
@@ -36,7 +35,7 @@ const DynamicTable = memo(({
 
 DynamicTable.defaultProps = {
   style: {},
-  rowKey: '',
+  rowKey: 'id',
   dataSource: [],
   loading: false,
   sizeChange: () => {},

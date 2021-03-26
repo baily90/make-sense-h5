@@ -19,17 +19,15 @@ const axiosWrap = axios.create({
 
 // 请求拦截
 axiosWrap.interceptors.request.use((config) => {
-  const temp = config;
   const token = '';
-  temp.headers['X-Token'] = token;
+  config.headers['X-Token'] = token;
   if (config.method === 'get') {
-    temp.params = camelCase2UnderScoreCase(config.params);
+    config.params = camelCase2UnderScoreCase(config.params);
   }
   if (config.method === 'post') {
-    temp.data = camelCase2UnderScoreCase(config.data);
+    config.data = camelCase2UnderScoreCase(config.data);
   }
-  console.log(temp);
-  return temp;
+  return config;
 });
 
 // 添加响应拦截器

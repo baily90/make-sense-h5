@@ -8,7 +8,7 @@
 import {
   Form, Select, Button, Input,
 } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getEngineerList } from '../../../redux/actionCreators/engineer';
 
@@ -16,16 +16,21 @@ const { Option } = Select;
 
 const Search = () => {
   const dispatch = useDispatch();
+  const params = useSelector((state) => state.engineer.searchParams);
   const [form] = Form.useForm();
+  console.log(params);
+
+  useEffect(() => {
+    const action = getEngineerList({ params });
+    dispatch(action);
+  }, []);
+
   const onFinish = (values) => {
     console.log(form);
     console.log(values);
-  };
-
-  useEffect(() => {
-    const action = getEngineerList();
+    const action = getEngineerList({ params });
     dispatch(action);
-  }, []);
+  };
 
   const onReset = () => {
     form.resetFields();

@@ -35,5 +35,6 @@ module.exports = {
     'no-use-before-define': 'off',
     'import/no-mutable-exports': 'off',
     'consistent-return': 'off',
+    'no-param-reassign': 'off',
   },
 };

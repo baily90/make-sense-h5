@@ -22,8 +22,9 @@ const List = () => {
   console.log('渲染List');
   return (
     <DynamicTable
+      rowKey="id"
       loading={loading}
-      dataSource={dataSource.users}
+      dataSource={dataSource.data}
       columns={columns}
       paginationData={{ total: dataSource.total, perPage: dataSource.perPage, currentPage: dataSource.currentPage }}
       sizeChange={sizeChange}
