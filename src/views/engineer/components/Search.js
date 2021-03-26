@@ -10,7 +10,9 @@ import {
 } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getEngineerList } from '../../../redux/actionCreators/engineer';
+import { getEngineerList } from '../../../redux/actionsAsync/engineer';
+import { setSearchParamsAction } from '../../../redux/actions/engineer';
+import { defaultSearchParams } from '../config';
 
 const { Option } = Select;
 
@@ -18,21 +20,27 @@ const Search = () => {
   const dispatch = useDispatch();
   const params = useSelector((state) => state.engineer.searchParams);
   const [form] = Form.useForm();
-  console.log(params);
 
   useEffect(() => {
-    const action = getEngineerList({ params });
-    dispatch(action);
+    const searchParamsAction = setSearchParamsAction({ searchParams: defaultSearchParams });
+    dispatch(searchParamsAction);
+    const engineerList = getEngineerList({ params: defaultSearchParams });
+    dispatch(engineerList);
   }, []);
 
   const onFinish = (values) => {
-    console.log(form);
-    console.log(values);
-    const action = getEngineerList({ params });
-    dispatch(action);
+    const obj = {};
+    obj[values.type] = values.value;
+    const searchParams = { ...params, ...obj };
+    const searchParamsAction = setSearchParamsAction({ searchParams });
+    dispatch(searchParamsAction);
+    const engineerList = getEngineerList({ params: searchParams });
+    dispatch(engineerList);
   };
 
   const onReset = () => {
+    const searchParamsAction = setSearchParamsAction({ searchParams: defaultSearchParams });
+    dispatch(searchParamsAction);
     form.resetFields();
   };
 
@@ -43,12 +51,12 @@ const Search = () => {
       onFinish={onFinish}
     >
       <Form.Item
-        initialValue="no"
+        initialValue="code"
         name="type"
       >
         <Select style={{ width: 150 }}>
           <Option value="code">标注工程师编号</Option>
-          <Option value="no">标注工程师账号</Option>
+          <Option value="phone">标注工程师账号</Option>
           <Option value="name">标注工程师姓名</Option>
         </Select>
       </Form.Item>

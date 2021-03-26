@@ -1,7 +1,6 @@
-import Operate from '../components/Operate';
-import actions from './actions';
+import Operate from './components/Operate';
 
-export default [
+export const columns = [
   {
     title: '工程师编号',
     dataIndex: 'code',
@@ -47,3 +46,39 @@ export default [
     render: (text, record) => <Operate record={record} actions={actions}>action</Operate>,
   },
 ];
+
+export const actions = [
+  {
+    code: 'edit',
+    name: '编辑',
+    type: 'primary',
+  },
+  {
+    code: 'detail',
+    name: '详情',
+    type: 'default',
+  },
+  {
+    code: 'reset',
+    name: '重置密码',
+    type: 'default',
+  },
+  {
+    code: 'destroy',
+    name: '销户',
+    type: 'danger',
+  },
+  {
+    code: 'log',
+    name: '日志',
+    type: 'default',
+  },
+];
+
+export const defaultSearchParams = {
+  page: 1,
+  perPage: 20,
+  code: '',
+  name: '',
+  phone: '',
+};
