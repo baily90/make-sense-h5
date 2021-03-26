@@ -5,3 +5,8 @@
  * @LastEditors: zhangyanlong
  * @Description:
  */
+export default {
+  engineer: {
+    getEngineerList: '/user/list',
+  },
+};

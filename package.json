@@ -2,6 +2,7 @@
   "name": "make-sense-h5",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://yapi.soundws.com/mock/88",
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "antd": "^4.14.0",
