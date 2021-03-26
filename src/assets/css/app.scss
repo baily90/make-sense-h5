@@ -1,6 +1,5 @@
 .app-sider {
-	overflow-y: auto;
-	overflow-x: hidden;
+	height: 100vh;
 	.logo {
 		display: flex;
 		align-items: center;
@@ -32,22 +31,6 @@
 .breadCrumb {
 	padding: 15px;
 	padding-bottom: 0;
-}
-
-.search-form {
-	padding: 15px;
-	.ant-form-item {
-		display: flex;
-	}
-	.ant-form-item-control-wrapper {
-		flex: 1;
-	}
-}
-.search-btns {
-	display: flex;
-	.ant-form-item {
-		margin-right: 10px;
-	}
 }
 
 #taxDynamicTable {

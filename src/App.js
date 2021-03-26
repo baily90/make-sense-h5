@@ -6,7 +6,7 @@
  * @Description:
  */
 import React, { useEffect, useState } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
 import Login from './views/login';
@@ -41,26 +41,26 @@ const App = () => {
   };
   return (
     <HashRouter>
-      <Switch>
-        <Route path="/login" exact component={Login} />
-        <Layout style={{ height: '100vh' }}>
-          <SideMenu routesConfig={menuConfig} />
-          <Layout>
-            <TopHeader />
-            <BreadCrumb />
-            <Content style={{ margin: '15px', padding: '15px', background: '#fff' }}>
-              {routes.map((route) => (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  exact
-                  render={(props) => <route.component {...props} />}
-                />
-              ))}
-            </Content>
-          </Layout>
+      {/* <Switch> */}
+      <Route path="/login" exact component={Login} />
+      <Layout style={{ height: '100vh' }}>
+        <SideMenu routesConfig={menuConfig} />
+        <Layout>
+          <TopHeader />
+          <BreadCrumb />
+          <Content style={{ margin: '15px', padding: '15px', background: '#fff' }}>
+            {routes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                exact
+                render={(props) => <route.component {...props} />}
+              />
+            ))}
+          </Content>
         </Layout>
-      </Switch>
+      </Layout>
+      {/* </Switch> */}
     </HashRouter>
   );
 };
