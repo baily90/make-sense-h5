@@ -11,7 +11,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getEngineerList } from '../../../redux/actionsAsync/engineer';
-import { setSearchParamsAction } from '../../../redux/actions/engineer';
+import { setSearchParamsAction, setFormVisiableAction } from '../../../redux/actions/engineer';
 import { defaultSearchParams } from '../config';
 
 const { Option } = Select;
@@ -44,6 +44,10 @@ const Search = () => {
     form.resetFields();
   };
 
+  const showFormModal = () => {
+    dispatch(setFormVisiableAction({ isFormVisible: true }));
+  };
+
   return (
     <Form
       layout="inline"
@@ -69,8 +73,15 @@ const Search = () => {
         <Button type="primary" htmlType="submit">
           查询
         </Button>
+      </Form.Item>
+      <Form.Item>
         <Button htmlType="reset" onClick={onReset}>
           重置
+        </Button>
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" onClick={showFormModal}>
+          新增工程师
         </Button>
       </Form.Item>
     </Form>

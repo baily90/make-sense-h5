@@ -5,7 +5,9 @@
  * @LastEditors: zhangyanlong
  * @Description:
  */
-import { GET_LIST_ENGINEER, SET_LOADING_ENGINEER, SET_SEARCH_PARAMS_ENGINEER } from '../actionTypes';
+import {
+  GET_LIST_ENGINEER, SET_LOADING_ENGINEER, SET_SEARCH_PARAMS_ENGINEER, GET_CONFIG_ENGINEER, SET_FORM_VISIABLE_ENGINEER, ADD_USER_ENGINEER,
+} from '../actionTypes';
 
 const defaultState = {
   searchParams: {
@@ -17,6 +19,10 @@ const defaultState = {
   },
   dataSource: {},
   loading: false,
+  isFormVisible: false,
+  detail: {
+  },
+  config: { products: [], roles: [] },
 };
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -25,6 +31,12 @@ export default (state = defaultState, action) => {
     case SET_LOADING_ENGINEER:
       return { ...state, ...action.data };
     case SET_SEARCH_PARAMS_ENGINEER:
+      return { ...state, ...action.data };
+    case GET_CONFIG_ENGINEER:
+      return { ...state, ...action.data };
+    case SET_FORM_VISIABLE_ENGINEER:
+      return { ...state, ...action.data };
+    case ADD_USER_ENGINEER:
       return { ...state, ...action.data };
     default:
       return state;

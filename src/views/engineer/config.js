@@ -1,5 +1,5 @@
 import Operate from './components/Operate';
-
+// 列表表头配置
 export const columns = [
   {
     title: '工程师编号',
@@ -46,7 +46,7 @@ export const columns = [
     render: (text, record) => <Operate record={record} actions={actions}>action</Operate>,
   },
 ];
-
+// 操作按钮
 export const actions = [
   {
     code: 'edit',
@@ -75,6 +75,7 @@ export const actions = [
   },
 ];
 
+// 搜索条件默认值
 export const defaultSearchParams = {
   page: 1,
   perPage: 20,

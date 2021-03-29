@@ -8,5 +8,8 @@
 export default {
   engineer: {
     getEngineerList: '/user/list',
+    getEngineerDetail: '/user/detail',
+    getEngineerConfig: '/user/config',
+    addUser: '/user/add',
   },
 };
