@@ -24,7 +24,7 @@ const TopHeader = () => {
   return (
     <Header className="top-header">
       {isCollapsed ? <MenuUnfoldOutlined onClick={toggle} /> : <MenuFoldOutlined onClick={toggle} />}
-      <div className="header-title">后台管理系统</div>
+      <div className="header-title">标注系统运营管理端</div>
     </Header>
   );
 };

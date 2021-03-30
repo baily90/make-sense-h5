@@ -6,7 +6,7 @@ export default [
     title: '首页',
     path: '/',
     icon: <HomeOutlined />,
-    isMenu: true,
+    isMenu: false,
     component: Home,
   },
 ];
