@@ -2,7 +2,7 @@ import {
   getListAction, setLoadingAction, getConfigAction, getDetailAction,
 } from '../actions/engineer';
 import {
-  getEngineerListService, getEngineerConfigService, addUserService, getEngineerDetailService,
+  getEngineerListService, getEngineerConfigService, addUserService, updateUserService, getEngineerDetailService,
 } from '../../service/engineer';
 
 export const getEngineerList = (params) => async (dispatch) => {
@@ -28,9 +28,19 @@ export const getConfig = () => async (dispatch) => {
   }
 };
 
-export const addUser = (successCB = () => {}, faileCB = () => {}) => async () => {
+export const addUser = (data, successCB = () => {}, faileCB = () => {}) => async () => {
   try {
-    await addUserService();
+    await addUserService(data);
+    successCB();
+  } catch (error) {
+    faileCB();
+    console.log(error);
+  }
+};
+
+export const updateUser = (data, successCB = () => {}, faileCB = () => {}) => async () => {
+  try {
+    await updateUserService(data);
     successCB();
   } catch (error) {
     faileCB();

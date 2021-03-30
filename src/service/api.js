@@ -11,5 +11,6 @@ export default {
     getEngineerDetail: '/user/detail',
     getEngineerConfig: '/user/config',
     addUser: '/user/add',
+    updateUser: '/user/update',
   },
 };

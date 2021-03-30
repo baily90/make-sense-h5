@@ -3,7 +3,9 @@ import {
   Modal, Form, Input, Button, Checkbox,
 } from 'antd';
 import { useEffect, useState } from 'react';
-import { getConfig, addUser, getEngineerList } from '../../../redux/actionsAsync/engineer';
+import {
+  getConfig, addUser, updateUser, getEngineerList,
+} from '../../../redux/actionsAsync/engineer';
 import { setFormVisiableAction } from '../../../redux/actions/engineer';
 
 const layout = {
@@ -15,6 +17,7 @@ const tailLayout = {
 };
 
 const FormComp = () => {
+  const [isShowPhone, setIsShowPhone] = useState(false);
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [loading, setLoaing] = useState(false);
@@ -30,6 +33,17 @@ const FormComp = () => {
   useEffect(() => {
     dispatch(getConfig());
   }, []);
+  useEffect(() => {
+    if (formType !== 'add') {
+      form.setFieldsValue(detail);
+    }
+  }, [detail]);
+  useEffect(() => {
+    if (!isFormVisible) {
+      form.resetFields();
+      setIsShowPhone(false);
+    }
+  }, [isFormVisible]);
   console.log(`form-${formType}`, detail);
 
   const closeFormModal = () => {
@@ -37,20 +51,30 @@ const FormComp = () => {
   };
   const onFinish = (values) => {
     setLoaing(true);
-    dispatch(addUser(() => {
-      setLoaing(false);
-      dispatch(setFormVisiableAction({ isFormVisible: false }));
-      dispatch(getEngineerList({ params }));
-    }, () => {
-      setLoaing(false);
-    }));
-    console.log(values);
+    let action = () => {};
+    if (formType === 'edit') {
+      action = updateUser({ id: detail.id, ...values }, () => {
+        setLoaing(false);
+        dispatch(setFormVisiableAction({ isFormVisible: false }));
+        dispatch(getEngineerList({ params }));
+      }, () => {
+        setLoaing(false);
+      });
+    } else {
+      action = addUser(values, () => {
+        setLoaing(false);
+        dispatch(setFormVisiableAction({ isFormVisible: false }));
+        dispatch(getEngineerList({ params }));
+      }, () => {
+        setLoaing(false);
+      });
+    }
+    dispatch(action);
   };
   console.log(detail);
   return (
     <Modal
       title="标注工程师"
-      form={form}
       visible={isFormVisible}
       footer={null}
       onCancel={closeFormModal}
@@ -58,16 +82,20 @@ const FormComp = () => {
     >
       <Form
         {...layout}
-        initialValues={detail}
+        form={form}
         onFinish={onFinish}
       >
         <Form.Item
           label="手机号码"
-          name="phone"
-          rules={[{ required: true, message: '请输入手机号码' }]}
         >
-          <Input disabled={formType === 'detail'} maxLength={11} style={{ width: 200 }} />
-          {/* {formType === 'detail' && <Button type="link">详情</Button>} */}
+          <Form.Item
+            name={formType === 'detail' && !isShowPhone ? 'phoneSecret' : 'phone'}
+            noStyle
+            rules={[{ required: true, message: '请输入手机号码' }]}
+          >
+            <Input disabled={formType === 'detail'} maxLength={11} style={{ width: 200 }} />
+          </Form.Item>
+          {formType === 'detail' && <Button type="link" onClick={() => { setIsShowPhone(true); }}>详情</Button>}
         </Form.Item>
         <Form.Item
           label="工程师姓名"
@@ -90,13 +118,17 @@ const FormComp = () => {
         >
           <Checkbox.Group disabled={formType === 'detail'} options={roleIdsOptions} />
         </Form.Item>
-        {formType !== 'detail' && (
-          <Form.Item {...tailLayout}>
+        <Form.Item {...tailLayout}>
+          {formType !== 'detail' ? (
             <Button type="primary" htmlType="submit" loading={loading}>
-              保存
+              {formType === 'add' ? '立即创建' : '保存'}
             </Button>
-          </Form.Item>
-        )}
+          ) : (
+            <Button onClick={closeFormModal}>
+              关闭
+            </Button>
+          )}
+        </Form.Item>
       </Form>
 
     </Modal>

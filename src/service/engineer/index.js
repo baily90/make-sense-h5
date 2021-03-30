@@ -13,3 +13,6 @@ export function getEngineerConfigService(params, args) {
 export function addUserService(data, args) {
   return axiosWrap.post(api.engineer.addUser, data, args);
 }
+export function updateUserService(data, args) {
+  return axiosWrap.post(api.engineer.updateUser, data, args);
+}
