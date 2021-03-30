@@ -21,6 +21,7 @@ const FormComp = () => {
   const isFormVisible = useSelector((state) => state.engineer.isFormVisible);
   const config = useSelector((state) => state.engineer.config);
   const detail = useSelector((state) => state.engineer.detail);
+  const formType = useSelector((state) => state.engineer.formType);
 
   const params = useSelector((state) => state.engineer.searchParams);
   const productIdsOptions = config.products.map((item) => ({ label: item.name, value: item.id }));
@@ -29,7 +30,7 @@ const FormComp = () => {
   useEffect(() => {
     dispatch(getConfig());
   }, []);
-  console.log('form');
+  console.log(`form-${formType}`, detail);
 
   const closeFormModal = () => {
     dispatch(setFormVisiableAction({ isFormVisible: false }));
@@ -42,10 +43,10 @@ const FormComp = () => {
       dispatch(getEngineerList({ params }));
     }, () => {
       setLoaing(false);
-      console.log('faile');
     }));
     console.log(values);
   };
+  console.log(detail);
   return (
     <Modal
       title="标注工程师"
@@ -65,35 +66,39 @@ const FormComp = () => {
           name="phone"
           rules={[{ required: true, message: '请输入手机号码' }]}
         >
-          <Input />
+          <Input disabled={formType === 'detail'} maxLength={11} style={{ width: 200 }} />
+          {/* {formType === 'detail' && <Button type="link">详情</Button>} */}
         </Form.Item>
         <Form.Item
           label="工程师姓名"
           name="name"
           rules={[{ required: true, message: '请输入工程师姓名' }]}
         >
-          <Input />
+          <Input disabled={formType === 'detail'} />
         </Form.Item>
         <Form.Item
           label="标注部位"
           name="productIds"
           rules={[{ required: true, message: '请选择标注部位' }]}
         >
-          <Checkbox.Group options={productIdsOptions} />
+          <Checkbox.Group disabled={formType === 'detail'} options={productIdsOptions} />
         </Form.Item>
         <Form.Item
           label="角色"
           name="roleIds"
           rules={[{ required: true, message: '请选择角色' }]}
         >
-          <Checkbox.Group options={roleIdsOptions} />
+          <Checkbox.Group disabled={formType === 'detail'} options={roleIdsOptions} />
         </Form.Item>
-        <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit" loading={loading}>
-            立即创建
-          </Button>
-        </Form.Item>
+        {formType !== 'detail' && (
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit" loading={loading}>
+              保存
+            </Button>
+          </Form.Item>
+        )}
       </Form>
+
     </Modal>
   );
 };

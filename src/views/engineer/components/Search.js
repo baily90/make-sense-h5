@@ -11,7 +11,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getEngineerList } from '../../../redux/actionsAsync/engineer';
-import { setSearchParamsAction, setFormVisiableAction } from '../../../redux/actions/engineer';
+import { setSearchParamsAction, setFormVisiableAction, setFormTypeAction } from '../../../redux/actions/engineer';
 import { defaultSearchParams } from '../config';
 
 const { Option } = Select;
@@ -46,6 +46,7 @@ const Search = () => {
 
   const showFormModal = () => {
     dispatch(setFormVisiableAction({ isFormVisible: true }));
+    dispatch(setFormTypeAction({ formType: 'add' }));
   };
 
   return (

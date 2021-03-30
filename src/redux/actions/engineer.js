@@ -1,5 +1,5 @@
 import {
-  GET_LIST_ENGINEER, SET_LOADING_ENGINEER, SET_SEARCH_PARAMS_ENGINEER, GET_CONFIG_ENGINEER, SET_FORM_VISIABLE_ENGINEER,
+  GET_LIST_ENGINEER, SET_LOADING_ENGINEER, SET_SEARCH_PARAMS_ENGINEER, GET_CONFIG_ENGINEER, SET_FORM_VISIABLE_ENGINEER, SET_FORM_TYPE_ENGINEER, GET_DETAIL_ENGINEER,
 } from '../actionTypes';
 
 const getListAction = (data) => ({
@@ -25,10 +25,22 @@ const setFormVisiableAction = (data) => ({
   data,
 });
 
+const setFormTypeAction = (data) => ({
+  type: SET_FORM_TYPE_ENGINEER,
+  data,
+});
+
+const getDetailAction = (data) => ({
+  type: GET_DETAIL_ENGINEER,
+  data,
+});
+
 export {
   getListAction,
   setLoadingAction,
   setSearchParamsAction,
   getConfigAction,
   setFormVisiableAction,
+  setFormTypeAction,
+  getDetailAction,
 };

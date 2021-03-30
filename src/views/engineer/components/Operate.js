@@ -1,8 +1,12 @@
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { useConfirm } from '../../../common/hooks';
+import { setFormTypeAction, setFormVisiableAction } from '../../../redux/actions/engineer';
+import { getDetail } from '../../../redux/actionsAsync/engineer';
 
 const Operate = ({ record, actions }) => {
+  const dispatch = useDispatch();
   const handler = (item) => {
     switch (item.code) {
       case 'edit':
@@ -24,16 +28,25 @@ const Operate = ({ record, actions }) => {
         break;
     }
   };
+
   const edit = () => {
-    console.log(record);
+    dispatch(getDetail({ params: { id: record.id } }));
+    dispatch(setFormTypeAction({ formType: 'edit' }));
+    dispatch(setFormVisiableAction({ isFormVisible: true }));
   };
-  const detail = () => {};
+  const detail = () => {
+    dispatch(getDetail({ params: { id: record.id } }));
+    dispatch(setFormTypeAction({ formType: 'detail' }));
+    dispatch(setFormVisiableAction({ isFormVisible: true }));
+  };
   const reset = () => {
+    console.log(record);
     useConfirm('确定重置密码?', () => {
       console.log('重置密码');
     });
   };
   const destroy = () => {
+    console.log(record);
     useConfirm('确定销户?', () => {
       console.log('销户');
     });

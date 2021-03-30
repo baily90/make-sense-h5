@@ -1,5 +1,9 @@
-import { getListAction, setLoadingAction, getConfigAction } from '../actions/engineer';
-import { getEngineerListService, getEngineerConfigService, addUserService } from '../../service/engineer';
+import {
+  getListAction, setLoadingAction, getConfigAction, getDetailAction,
+} from '../actions/engineer';
+import {
+  getEngineerListService, getEngineerConfigService, addUserService, getEngineerDetailService,
+} from '../../service/engineer';
 
 export const getEngineerList = (params) => async (dispatch) => {
   // dispatch(getListAction({ dataSource: {} }));
@@ -30,6 +34,15 @@ export const addUser = (successCB = () => {}, faileCB = () => {}) => async () =>
     successCB();
   } catch (error) {
     faileCB();
+    console.log(error);
+  }
+};
+
+export const getDetail = (params) => async (dispatch) => {
+  try {
+    const detail = await getEngineerDetailService(params);
+    dispatch(getDetailAction({ detail }));
+  } catch (error) {
     console.log(error);
   }
 };
