@@ -7,15 +7,9 @@
  */
 import * as actionTypes from '../actionTypes';
 
-const setBreadCrumb = (data) => ({
-  type: actionTypes.SET_BREADCRUMB,
-  data,
-});
-const setCollapse = (data) => ({
+export const setCollapse = (data) => ({
   type: actionTypes.SET_COLLAPSE,
   data,
 });
 
-export {
-  setBreadCrumb, setCollapse,
-};
+export const test = '';

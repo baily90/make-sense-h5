@@ -7,8 +7,8 @@ import {
 
 export const getEngineerList = (params) => async (dispatch) => {
   // dispatch(getListAction({ dataSource: {} }));
-  dispatch(setLoadingAction({ loading: true }));
   try {
+    dispatch(setLoadingAction({ loading: true }));
     const dataSource = await getEngineerListService(params);
     dispatch(getListAction({
       dataSource,
