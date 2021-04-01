@@ -1,9 +1,9 @@
 import {
   setLoadingAction,
   getListAction,
-} from '../actions/subPatch';
+} from '../actions/subBatch';
 
-export const getSubPatchList = (params) => async (dispatch) => {
+export const getSubBatchList = (params) => async (dispatch) => {
   try {
     console.log(params, dispatch);
     dispatch(setLoadingAction({ loading: true }));

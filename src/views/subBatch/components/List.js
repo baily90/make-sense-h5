@@ -5,14 +5,14 @@ import DynamicTable from '../../../components/DynamicTable';
 import { columns } from '../config';
 
 const loadingSelector = createSelector(
-  (state) => state.subPatch.loading,
+  (state) => state.subBatch.loading,
   (loading) => {
     console.log(loading);
     return loading;
   },
 );
 const dataSourceSelector = createSelector(
-  (state) => state.subPatch.dataSource,
+  (state) => state.subBatch.dataSource,
   (dataSource) => {
     console.log(dataSource);
     return dataSource;

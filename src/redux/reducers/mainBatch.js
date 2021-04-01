@@ -6,7 +6,7 @@
  * @Description:
  */
 import {
-  GET_DATA_MAINPATCH, SET_LOADING_MAINPATCH, SET_SEARCH_PARAMS_MAINPATCH,
+  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH,
 } from '../actionTypes';
 
 const defaultState = {
@@ -19,14 +19,17 @@ const defaultState = {
   },
   dataSource: {},
   loading: false,
+  config: { products: [], roles: [] },
 };
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case GET_DATA_MAINPATCH:
+    case GET_DATA_MAINBATCH:
       return { ...state, ...action.data };
-    case SET_LOADING_MAINPATCH:
+    case SET_LOADING_MAINBATCH:
       return { ...state, ...action.data };
-    case SET_SEARCH_PARAMS_MAINPATCH:
+    case SET_SEARCH_PARAMS_MAINBATCH:
+      return { ...state, ...action.data };
+    case GET_CONFIG_MAINBATCH:
       return { ...state, ...action.data };
     default:
       return state;

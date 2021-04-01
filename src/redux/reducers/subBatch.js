@@ -6,7 +6,7 @@
  * @Description:
  */
 import {
-  GET_DATA_SUBPATCH, SET_LOADING_SUBPATCH, SET_SEARCH_PARAMS_SUBPATCH,
+  GET_DATA_SUBBATCH, SET_LOADING_SUBBATCH, SET_SEARCH_PARAMS_SUBBATCH,
 } from '../actionTypes';
 
 const defaultState = {
@@ -22,11 +22,11 @@ const defaultState = {
 };
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case GET_DATA_SUBPATCH:
+    case GET_DATA_SUBBATCH:
       return { ...state, ...action.data };
-    case SET_LOADING_SUBPATCH:
+    case SET_LOADING_SUBBATCH:
       return { ...state, ...action.data };
-    case SET_SEARCH_PARAMS_SUBPATCH:
+    case SET_SEARCH_PARAMS_SUBBATCH:
       return { ...state, ...action.data };
     default:
       return state;

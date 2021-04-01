@@ -1,12 +1,12 @@
 import { HddOutlined } from '@ant-design/icons';
-import SubPatch from '../../views/subPatch';
+import SubBatch from '../../views/subBatch';
 
 export default [
   {
     title: '子批次管理',
-    path: '/subPatch',
+    path: '/subBatch',
     icon: <HddOutlined />,
     isMenu: true,
-    component: SubPatch,
+    component: SubBatch,
   },
 ];

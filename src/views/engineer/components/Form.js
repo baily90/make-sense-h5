@@ -25,8 +25,8 @@ const FormComp = () => {
   const config = useSelector((state) => state.engineer.config);
   const detail = useSelector((state) => state.engineer.detail);
   const formType = useSelector((state) => state.engineer.formType);
-
   const params = useSelector((state) => state.engineer.searchParams);
+
   const productIdsOptions = config.products.map((item) => ({ label: item.name, value: item.id }));
   const roleIdsOptions = config.roles.map((item) => ({ label: item.name, value: item.id }));
 

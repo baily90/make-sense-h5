@@ -1,11 +1,11 @@
 import Search from './components/Search';
 import List from './components/List';
 
-const MainPatch = () => (
+const SubBatch = () => (
   <>
     <Search />
     <List />
   </>
 );
 
-export default MainPatch;
+export default SubBatch;

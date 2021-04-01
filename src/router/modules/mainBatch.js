@@ -1,12 +1,12 @@
 import { PartitionOutlined } from '@ant-design/icons';
-import MainPatch from '../../views/mainPatch';
+import MainBatch from '../../views/mainBatch';
 
 export default [
   {
     title: '主批次管理',
-    path: '/mainPatch',
+    path: '/mainBatch',
     icon: <PartitionOutlined />,
     isMenu: true,
-    component: MainPatch,
+    component: MainBatch,
   },
 ];

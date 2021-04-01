@@ -1,10 +1,12 @@
 import {
   setLoadingAction,
   getListAction,
-} from '../actions/mainPatch';
+  getConfigAction,
+} from '../actions/mainBatch';
 import { getMainBatchListService } from '../../service/mainBatch';
+import { getEngineerConfigService } from '../../service/engineer';
 
-export const getMainPatchList = (params) => async (dispatch) => {
+export const getMainBatchList = (params) => async (dispatch) => {
   try {
     dispatch(setLoadingAction({ loading: true }));
     const dataSource = await getMainBatchListService(params);
@@ -18,4 +20,11 @@ export const getMainPatchList = (params) => async (dispatch) => {
   }
 };
 
-export const test = '';
+export const getConfig = () => async (dispatch) => {
+  try {
+    const config = await getEngineerConfigService();
+    dispatch(getConfigAction({ config }));
+  } catch (error) {
+    console.log(error);
+  }
+};

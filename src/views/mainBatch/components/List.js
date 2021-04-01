@@ -3,21 +3,21 @@ import { Spin } from 'antd';
 import { createSelector } from 'reselect';
 import DynamicTable from '../../../components/DynamicTable';
 import { columns } from '../config';
-import { getMainPatchList } from '../../../redux/actionsAsync/mainPatch';
-import { setSearchParamsAction } from '../../../redux/actions/mainPatch';
+import { getMainBatchList } from '../../../redux/actionsAsync/mainBatch';
+import { setSearchParamsAction } from '../../../redux/actions/mainBatch';
 
 const loadingSelector = createSelector(
-  (state) => state.mainPatch.loading,
+  (state) => state.mainBatch.loading,
   (loading) => loading,
 );
 const dataSourceSelector = createSelector(
-  (state) => state.mainPatch.dataSource,
+  (state) => state.mainBatch.dataSource,
   (dataSource) => dataSource,
 );
 
 const List = () => {
   const dispatch = useDispatch();
-  const searchParams = useSelector((state) => state.mainPatch.searchParams);
+  const searchParams = useSelector((state) => state.mainBatch.searchParams);
   const dataSource = useSelector(dataSourceSelector);
   const loading = useSelector(loadingSelector);
 
@@ -25,7 +25,7 @@ const List = () => {
   //   const params = { ...searchParams, page: 1, perPage: pageSize };
   //   const searchParamsAction = setSearchParamsAction({ searchParams: params });
   //   dispatch(searchParamsAction);
-  //   const engineerList = getMainPatchList({ params });
+  //   const engineerList = getMainBatchList({ params });
   //   dispatch(engineerList);
   //   console.log(`sizeChange, pageSize:${pageSize}`);
   // };
@@ -33,7 +33,7 @@ const List = () => {
     const params = { ...searchParams, page: current, perPage: pageSize };
     const searchParamsAction = setSearchParamsAction({ searchParams: params });
     dispatch(searchParamsAction);
-    const engineerList = getMainPatchList({ params });
+    const engineerList = getMainBatchList({ params });
     dispatch(engineerList);
     console.log(`changeFunc, current: ${current}, pageSize:${pageSize}`);
   };
