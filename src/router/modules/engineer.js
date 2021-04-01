@@ -7,6 +7,7 @@ export default [
     path: '/engineer',
     icon: <TeamOutlined />,
     isMenu: true,
+    order: 100,
     component: Engineer,
   },
 ];

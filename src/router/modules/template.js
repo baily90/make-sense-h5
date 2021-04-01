@@ -7,6 +7,7 @@ export default [
     path: '/template',
     icon: <LayoutOutlined />,
     isMenu: true,
+    order: 400,
     component: Template,
   },
 ];

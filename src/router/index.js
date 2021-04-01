@@ -14,5 +14,5 @@ routerContext.keys().forEach((router) => {
   const routerModule = routerContext(router);
   routes = [...routes, ...(routerModule.default || routerModule)];
 });
-
+routes = routes.sort((a, b) => a.order - b.order);
 export default routes;

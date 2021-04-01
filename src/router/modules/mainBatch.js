@@ -7,6 +7,7 @@ export default [
     path: '/mainBatch',
     icon: <PartitionOutlined />,
     isMenu: true,
+    order: 200,
     component: MainBatch,
   },
 ];

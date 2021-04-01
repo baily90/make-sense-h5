@@ -7,6 +7,7 @@ export default [
     path: '/subBatch',
     icon: <HddOutlined />,
     isMenu: true,
+    order: 300,
     component: SubBatch,
   },
 ];
