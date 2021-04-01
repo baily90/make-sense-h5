@@ -8,8 +8,9 @@
 import { combineReducers } from 'redux';
 import setting from './setting';
 import engineer from './engineer';
+import mainPatch from './mainBatch';
 import subPatch from './subBatch';
 
 export default combineReducers({
-  setting, engineer, subPatch,
+  setting, engineer, mainPatch, subPatch,
 });

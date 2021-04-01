@@ -13,4 +13,7 @@ export default {
     addUser: '/user/add',
     updateUser: '/user/update',
   },
+  mainBatch: {
+    getMianPatchList: '/batch/list',
+  },
 };
