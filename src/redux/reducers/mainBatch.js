@@ -6,7 +6,7 @@
  * @Description:
  */
 import {
-  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH,
+  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH, SET_POSITIONS_MAINBATCH,
 } from '../actionTypes';
 
 const defaultState = {
@@ -20,6 +20,7 @@ const defaultState = {
   dataSource: {},
   loading: false,
   config: { products: [], roles: [] },
+  positions: [],
 };
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -30,6 +31,8 @@ export default (state = defaultState, action) => {
     case SET_SEARCH_PARAMS_MAINBATCH:
       return { ...state, ...action.data };
     case GET_CONFIG_MAINBATCH:
+      return { ...state, ...action.data };
+    case SET_POSITIONS_MAINBATCH:
       return { ...state, ...action.data };
     default:
       return state;

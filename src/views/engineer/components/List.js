@@ -6,6 +6,7 @@
  * @Description:
  */
 import { useSelector, useDispatch } from 'react-redux';
+import { Spin } from 'antd';
 import DynamicTable from '../../../components/DynamicTable';
 import { columns } from '../config';
 import { getEngineerList } from '../../../redux/actionsAsync/engineer';
@@ -35,15 +36,16 @@ const List = () => {
   };
   console.log('渲染List');
   return (
-    <DynamicTable
-      rowKey="id"
-      loading={loading}
-      dataSource={dataSource.data}
-      columns={columns}
-      paginationData={{ total: dataSource.total, perPage: dataSource.perPage, currentPage: dataSource.currentPage }}
+    <Spin spinning={loading}>
+      <DynamicTable
+        rowKey="id"
+        dataSource={dataSource.data}
+        columns={columns}
+        paginationData={{ total: dataSource.total, perPage: dataSource.perPage, currentPage: dataSource.currentPage }}
       // sizeChange={sizeChange}
-      changeFunc={changeFunc}
-    />
+        changeFunc={changeFunc}
+      />
+    </Spin>
   );
 };
 

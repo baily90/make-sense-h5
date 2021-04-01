@@ -8,6 +8,9 @@ import {
 } from '../../../redux/actionsAsync/engineer';
 import { setFormVisiableAction } from '../../../redux/actions/engineer';
 
+const { Group } = Checkbox;
+const { Item } = Form;
+
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
@@ -85,40 +88,40 @@ const FormComp = () => {
         form={form}
         onFinish={onFinish}
       >
-        <Form.Item
+        <Item
           label="手机号码"
         >
-          <Form.Item
+          <Item
             name={formType === 'detail' && !isShowPhone ? 'phoneSecret' : 'phone'}
             noStyle
             rules={[{ required: true, message: '请输入手机号码' }]}
           >
             <Input disabled={formType === 'detail'} maxLength={11} style={{ width: 200 }} />
-          </Form.Item>
+          </Item>
           {formType === 'detail' && <Button type="link" onClick={() => { setIsShowPhone(true); }}>详情</Button>}
-        </Form.Item>
-        <Form.Item
+        </Item>
+        <Item
           label="工程师姓名"
           name="name"
           rules={[{ required: true, message: '请输入工程师姓名' }]}
         >
           <Input disabled={formType === 'detail'} />
-        </Form.Item>
-        <Form.Item
+        </Item>
+        <Item
           label="标注部位"
           name="productIds"
           rules={[{ required: true, message: '请选择标注部位' }]}
         >
-          <Checkbox.Group disabled={formType === 'detail'} options={productIdsOptions} />
-        </Form.Item>
-        <Form.Item
+          <Group disabled={formType === 'detail'} options={productIdsOptions} />
+        </Item>
+        <Item
           label="角色"
           name="roleIds"
           rules={[{ required: true, message: '请选择角色' }]}
         >
-          <Checkbox.Group disabled={formType === 'detail'} options={roleIdsOptions} />
-        </Form.Item>
-        <Form.Item {...tailLayout}>
+          <Group disabled={formType === 'detail'} options={roleIdsOptions} />
+        </Item>
+        <Item {...tailLayout}>
           {formType !== 'detail' ? (
             <Button type="primary" htmlType="submit" loading={loading}>
               {formType === 'add' ? '立即创建' : '保存'}
@@ -128,7 +131,7 @@ const FormComp = () => {
               关闭
             </Button>
           )}
-        </Form.Item>
+        </Item>
       </Form>
 
     </Modal>

@@ -1,5 +1,5 @@
 import {
-  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH,
+  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH, SET_POSITIONS_MAINBATCH,
 } from '../actionTypes';
 
 const getListAction = (data) => ({
@@ -19,9 +19,15 @@ const getConfigAction = (data) => ({
   data,
 });
 
+const setPostionAction = (data) => ({
+  type: SET_POSITIONS_MAINBATCH,
+  data,
+});
+
 export {
   getListAction,
   setLoadingAction,
   setSearchParamsAction,
   getConfigAction,
+  setPostionAction,
 };

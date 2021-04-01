@@ -1,25 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Spin } from 'antd';
-import { createSelector } from 'reselect';
 import DynamicTable from '../../../components/DynamicTable';
 import { columns } from '../config';
 import { getMainBatchList } from '../../../redux/actionsAsync/mainBatch';
 import { setSearchParamsAction } from '../../../redux/actions/mainBatch';
 
-const loadingSelector = createSelector(
-  (state) => state.mainBatch.loading,
-  (loading) => loading,
-);
-const dataSourceSelector = createSelector(
-  (state) => state.mainBatch.dataSource,
-  (dataSource) => dataSource,
-);
-
 const List = () => {
   const dispatch = useDispatch();
   const searchParams = useSelector((state) => state.mainBatch.searchParams);
-  const dataSource = useSelector(dataSourceSelector);
-  const loading = useSelector(loadingSelector);
+  const dataSource = useSelector((state) => state.mainBatch.dataSource);
+  const loading = useSelector((state) => state.mainBatch.loading);
 
   // const sizeChange = (pageSize) => {
   //   const params = { ...searchParams, page: 1, perPage: pageSize };

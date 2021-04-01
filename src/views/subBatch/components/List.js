@@ -1,28 +1,12 @@
 import { useSelector } from 'react-redux';
 import { Spin } from 'antd';
-import { createSelector } from 'reselect';
 import DynamicTable from '../../../components/DynamicTable';
 import { columns } from '../config';
 
-const loadingSelector = createSelector(
-  (state) => state.subBatch.loading,
-  (loading) => {
-    console.log(loading);
-    return loading;
-  },
-);
-const dataSourceSelector = createSelector(
-  (state) => state.subBatch.dataSource,
-  (dataSource) => {
-    console.log(dataSource);
-    return dataSource;
-  },
-);
-
 const List = () => {
   // const dispatch = useDispatch();
-  const dataSource = useSelector(dataSourceSelector);
-  const loading = useSelector(loadingSelector);
+  const dataSource = useSelector((state) => state.subBatch.dataSource);
+  const loading = useSelector((state) => state.subBatch.loading);
   // const sizeChange = (pageSize) => {
   //   console.log(`sizeChange, pageSize:${pageSize}`);
   // };
