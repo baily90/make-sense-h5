@@ -21,18 +21,14 @@ const dataSourceSelector = createSelector(
 
 const List = () => {
   // const dispatch = useDispatch();
-  // const dataSourceSelector = createSelector(
-  //   (state) => state.subPatch.dataSource,
-  //   (dataSource) => dataSource,
-  // );
   const dataSource = useSelector(dataSourceSelector);
   const loading = useSelector(loadingSelector);
-  // const sizeChange = (pageSize) => {
-  //   console.log(`sizeChange, pageSize:${pageSize}`);
-  // };
-  // const changeFunc = (current, pageSize) => {
-  //   console.log(`changeFunc, current: ${current}, pageSize:${pageSize}`);
-  // };
+  const sizeChange = (pageSize) => {
+    console.log(`sizeChange, pageSize:${pageSize}`);
+  };
+  const changeFunc = (current, pageSize) => {
+    console.log(`changeFunc, current: ${current}, pageSize:${pageSize}`);
+  };
 
   return (
     <Spin spinning={loading}>
@@ -41,8 +37,8 @@ const List = () => {
         dataSource={dataSource.data}
         columns={columns}
         paginationData={{ total: dataSource.total, perPage: dataSource.perPage, currentPage: dataSource.currentPage }}
-        // sizeChange={sizeChange}
-        // changeFunc={changeFunc}
+        sizeChange={sizeChange}
+        changeFunc={changeFunc}
       />
     </Spin>
 
