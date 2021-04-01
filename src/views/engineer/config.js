@@ -78,7 +78,7 @@ export const actions = [
 // 搜索条件默认值
 export const defaultSearchParams = {
   page: 1,
-  perPage: 20,
+  perPage: 10,
   code: '',
   name: '',
   phone: '',

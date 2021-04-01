@@ -24,7 +24,7 @@ export const getSubPatchList = (params) => async (dispatch) => {
             c10: '2020-11-24 13:23',
           }],
           total: 25,
-          perPage: 20,
+          perPage: 10,
           currentPage: 1,
         },
       }));

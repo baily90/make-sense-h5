@@ -21,6 +21,7 @@ const DynamicTable = memo(({
       pagination={{
         showSizeChanger: true,
         showQuickJumper: true,
+        pageSizeOptions: ['10', '20', '30', '50'],
         showTotal: () => `共${paginationData.total}条`,
         pageSize: Number(paginationData.perPage),
         current: Number(paginationData.currentPage),
@@ -42,7 +43,7 @@ DynamicTable.defaultProps = {
   changeFunc: () => {},
   rowSelection: null,
   paginationData: {
-    perPage: 20,
+    perPage: 10,
     total: 0,
     currentPage: 1,
   },

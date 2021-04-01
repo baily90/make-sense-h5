@@ -17,14 +17,14 @@ const List = () => {
   const dataSource = useSelector((state) => state.engineer.dataSource);
   const loading = useSelector((state) => state.engineer.loading);
 
-  const sizeChange = (pageSize) => {
-    const params = { ...searchParams, page: 1, perPage: pageSize };
-    const searchParamsAction = setSearchParamsAction({ searchParams: params });
-    dispatch(searchParamsAction);
-    const engineerList = getEngineerList({ params });
-    dispatch(engineerList);
-    console.log(`sizeChange, pageSize:${pageSize}`);
-  };
+  // const sizeChange = (pageSize) => {
+  //   const params = { ...searchParams, page: 1, perPage: pageSize };
+  //   const searchParamsAction = setSearchParamsAction({ searchParams: params });
+  //   dispatch(searchParamsAction);
+  //   const engineerList = getEngineerList({ params });
+  //   dispatch(engineerList);
+  //   console.log(`sizeChange, pageSize:${pageSize}`);
+  // };
   const changeFunc = (current, pageSize) => {
     const params = { ...searchParams, page: current, perPage: pageSize };
     const searchParamsAction = setSearchParamsAction({ searchParams: params });
@@ -41,7 +41,7 @@ const List = () => {
       dataSource={dataSource.data}
       columns={columns}
       paginationData={{ total: dataSource.total, perPage: dataSource.perPage, currentPage: dataSource.currentPage }}
-      sizeChange={sizeChange}
+      // sizeChange={sizeChange}
       changeFunc={changeFunc}
     />
   );
