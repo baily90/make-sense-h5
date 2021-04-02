@@ -61,6 +61,7 @@ const FormAdd = () => {
   };
 
   const onFinish = (values) => {
+    setLoaing(true);
     values.startTime = moment(values.startTime).format('YYYY-MM-DD');
     values.endTime = moment(values.endTime).format('YYYY-MM-DD');
     dispatch(addBatch(values, () => {
