@@ -1,3 +1,8 @@
+/**
+ * 驼峰转下划线
+ * @param {*} data
+ * @returns
+ */
 export const camelCase2UnderScoreCase = (data) => {
   const target = data;
   if (target === null) return null;
@@ -17,4 +22,5 @@ export const camelCase2UnderScoreCase = (data) => {
   });
   return result;
 };
+
 export const a = '';

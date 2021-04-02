@@ -4,7 +4,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getMainBatchList, getConfig } from '../../../redux/actionsAsync/mainBatch';
-import { setSearchParamsAction } from '../../../redux/actions/mainBatch';
+import { setSearchParamsAction, setFormAddVisiableAction } from '../../../redux/actions/mainBatch';
 import { defaultSearchParams } from '../config';
 
 const { Option } = Select;
@@ -40,6 +40,9 @@ const Search = () => {
     form.resetFields();
   };
 
+  const showFormAddModal = () => {
+    dispatch(setFormAddVisiableAction({ isFormAddVisible: true }));
+  };
   return (
     <Form
       layout="inline"
@@ -87,7 +90,7 @@ const Search = () => {
         </Button>
       </Form.Item>
       <Form.Item>
-        <Button type="primary">
+        <Button type="primary" onClick={showFormAddModal}>
           新建批次
         </Button>
       </Form.Item>

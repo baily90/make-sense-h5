@@ -3,8 +3,11 @@ import {
   getListAction,
   getConfigAction,
   setPostionAction,
+  setMaxNumbersAction,
 } from '../actions/mainBatch';
-import { getMainBatchListService, getPositionListService } from '../../service/mainBatch';
+import {
+  getMainBatchListService, getPositionListService, getCheckNumbersService, addBatchService,
+} from '../../service/mainBatch';
 import { getEngineerConfigService } from '../../service/engineer';
 
 export const getMainBatchList = (params) => async (dispatch) => {
@@ -35,6 +38,25 @@ export const getPosition = () => async (dispatch) => {
     const positions = await getPositionListService();
     dispatch(setPostionAction({ positions }));
   } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getMaxNumbers = (params) => async (dispatch) => {
+  try {
+    const { numbers } = await getCheckNumbersService(params);
+    dispatch(setMaxNumbersAction({ maxNumbers: numbers }));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addBatch = (data, successCB = () => {}, faileCB = () => {}) => async () => {
+  try {
+    await addBatchService(data);
+    successCB();
+  } catch (error) {
+    faileCB();
     console.log(error);
   }
 };

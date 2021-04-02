@@ -16,5 +16,7 @@ export default {
   mainBatch: {
     getMianPatchList: '/batch/list',
     getPositionList: '/batch/region/positions',
+    getCheckNumbers: '/batch/check/numbers',
+    addBatch: '/batch/add',
   },
 };
