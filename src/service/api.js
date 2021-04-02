@@ -19,4 +19,10 @@ export default {
     getCheckNumbers: '/batch/check/numbers',
     addBatch: '/batch/add',
   },
+  template: {
+    getTemplateList: '/template/properties/list',
+    addTemplate: '/template/properties/add',
+    updateTemplate: '/template/properties/update',
+    getDetail: '/template/properties/detail',
+  },
 };

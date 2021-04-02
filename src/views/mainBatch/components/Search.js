@@ -8,6 +8,7 @@ import { setSearchParamsAction, setFormAddVisiableAction } from '../../../redux/
 import { defaultSearchParams } from '../config';
 
 const { Option } = Select;
+const { Item } = Form;
 
 const Search = () => {
   const [form] = Form.useForm();
@@ -49,21 +50,21 @@ const Search = () => {
       form={form}
       onFinish={onFinish}
     >
-      <Form.Item
+      <Item
         label="主批次编码"
         name="code"
       >
         <Input style={{ width: 150 }} />
-      </Form.Item>
-      <Form.Item
+      </Item>
+      <Item
         initialValue=""
         name="regionId"
       >
         <Select style={{ width: 120 }}>
           {productIdsOptions.map((item) => <Option key={item.value} value={item.value}>{item.label}</Option>)}
         </Select>
-      </Form.Item>
-      <Form.Item
+      </Item>
+      <Item
         initialValue=""
         name="status"
       >
@@ -75,7 +76,7 @@ const Search = () => {
           <Option value="4">取消标注</Option>
           <Option value="5">标注完成</Option>
         </Select>
-      </Form.Item>
+      </Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">
           查询

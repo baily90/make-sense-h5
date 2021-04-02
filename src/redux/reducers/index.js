@@ -10,7 +10,8 @@ import setting from './setting';
 import engineer from './engineer';
 import mainBatch from './mainBatch';
 import subBatch from './subBatch';
+import template from './template';
 
 export default combineReducers({
-  setting, engineer, mainBatch, subBatch,
+  setting, engineer, mainBatch, subBatch, template,
 });

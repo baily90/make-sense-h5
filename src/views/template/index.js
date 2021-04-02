@@ -1,5 +1,13 @@
+import Search from './components/Search';
+import List from './components/List';
+import Form from './components/Form';
+
 const Template = () => (
-  <>Template</>
+  <>
+    <Search />
+    <List />
+    <Form />
+  </>
 );
 
 export default Template;
