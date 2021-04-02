@@ -87,6 +87,7 @@ const FormComp = () => {
         {...layout}
         form={form}
         onFinish={onFinish}
+        preserve={false}
       >
         <Item
           label="手机号码"

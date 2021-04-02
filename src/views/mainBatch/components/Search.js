@@ -61,9 +61,6 @@ const Search = () => {
       >
         <Select style={{ width: 120 }}>
           {productIdsOptions.map((item) => <Option key={item.value} value={item.value}>{item.label}</Option>)}
-          {/* <Option value="">全部部位</Option>
-          <Option value="1">甲状腺</Option>
-          <Option value="2">颈动脉</Option> */}
         </Select>
       </Form.Item>
       <Form.Item

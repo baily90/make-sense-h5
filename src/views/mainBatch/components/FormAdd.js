@@ -1,15 +1,16 @@
 import {
   Modal, Form, Input, Button, Select, Checkbox, DatePicker,
 } from 'antd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import {
   getPosition,
   getMaxNumbers,
   addBatch,
+  getMainBatchList,
 } from '../../../redux/actionsAsync/mainBatch';
-import { setFormAddVisiableAction } from '../../../redux/actions/mainBatch';
+import { setFormAddVisiableAction, setPostionAction, setMaxNumbersAction } from '../../../redux/actions/mainBatch';
 
 const { Group } = Checkbox;
 const { Item } = Form;
@@ -25,12 +26,21 @@ const FormAdd = () => {
   const [loading, setLoaing] = useState(false);
   const dispatch = useDispatch();
   const [form] = Form.useForm();
+  const searchParams = useSelector((state) => state.mainBatch.searchParams);
   const isFormAddVisible = useSelector((state) => state.mainBatch.isFormAddVisible);
   const config = useSelector((state) => state.mainBatch.config);
   const positions = useSelector((state) => state.mainBatch.positions);
   const maxNumbers = useSelector((state) => state.mainBatch.maxNumbers);
   const productIdsOptions = config.products.map((item) => ({ label: item.name, value: item.id }));
   const regionPositionsOptions = positions.map((item) => ({ label: item.name, value: item.id }));
+
+  useEffect(() => {
+    if (!isFormAddVisible) {
+      form.resetFields();
+      dispatch(setPostionAction({ positions: [] }));
+      dispatch(setMaxNumbersAction({ maxNumbers: undefined }));
+    }
+  }, [isFormAddVisible]);
 
   const onRegionChange = (regionId) => {
     dispatch(getPosition(regionId));
@@ -57,7 +67,7 @@ const FormAdd = () => {
       console.log('success');
       setLoaing(false);
       dispatch(setFormAddVisiableAction({ isFormAddVisible: false }));
-      // dispatch(getEngineerList({ params }));
+      dispatch(getMainBatchList({ params: searchParams }));
     }, () => {
       console.log('error');
       setLoaing(false);
@@ -80,6 +90,7 @@ const FormAdd = () => {
         {...layout}
         form={form}
         onFinish={onFinish}
+        preserve={false}
       >
         <Item
           label="任务名称"
