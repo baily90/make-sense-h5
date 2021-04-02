@@ -42,6 +42,7 @@ const Operate = ({ record, actions }) => {
     });
   };
   const log = () => {};
+
   return (
     <>
       {

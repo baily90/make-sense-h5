@@ -3,6 +3,7 @@ import {
   Modal, Form, Input, Button, Select,
 } from 'antd';
 import { useEffect, useState } from 'react';
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   addTemplate, updateTemplate, getTemplateList,
 } from '../../../redux/actionsAsync/template';
@@ -17,6 +18,13 @@ const layout = {
 };
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
+};
+
+const formItemLayoutWithOutLabel = {
+  wrapperCol: {
+    xs: { span: 24, offset: 0 },
+    sm: { span: 20, offset: 4 },
+  },
 };
 
 const FormComp = () => {
@@ -47,6 +55,7 @@ const FormComp = () => {
     dispatch(setFormVisiableAction({ isFormVisible: false }));
   };
   const onFinish = (values) => {
+    console.log(values);
     setLoaing(true);
     let action = () => {};
     if (formType === 'edit') {
@@ -110,6 +119,60 @@ const FormComp = () => {
             <Option value="2">多选</Option>
           </Select>
         </Item>
+        <Form.List
+          name="options"
+          initialValue={['']}
+          rules={[
+            {
+              validator: async (_, names) => {
+                if (!names || names.length < 1) {
+                  return Promise.reject(new Error('至少新增一项'));
+                }
+              },
+            },
+          ]}
+        >
+          {(fields, { add, remove }) => (
+            <>
+              {fields.map((field, index) => (
+                <Item
+                  label={`选项${index + 1}`}
+                  required
+                  key={field.key}
+                >
+                  <Item
+                    {...field}
+                    rules={[
+                      {
+                        required: true,
+                        message: '请输入选项值',
+                      },
+                    ]}
+                    noStyle
+                  >
+                    <Input placeholder="选项值" style={{ width: 200 }} />
+                  </Item>
+                  {fields.length > 1 ? (
+                    <MinusCircleOutlined
+                      style={{ marginLeft: 10 }}
+                      onClick={() => remove(field.name)}
+                    />
+                  ) : null}
+                </Item>
+              ))}
+              <Item {...formItemLayoutWithOutLabel}>
+                <Button
+                  type="dashed"
+                  onClick={() => add()}
+                  style={{ width: '60%' }}
+                  icon={<PlusOutlined />}
+                >
+                  新增选项值
+                </Button>
+              </Item>
+            </>
+          )}
+        </Form.List>
 
         <Item {...tailLayout}>
           <Button type="primary" htmlType="submit" loading={loading}>
