@@ -2,7 +2,7 @@ import { Button } from 'antd';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useConfirm } from '../../../common/hooks';
-import { getBatchDetail } from '../../../redux/actionsAsync/mainBatch';
+import { getBatchDetail, getEditDetail } from '../../../redux/actionsAsync/mainBatch';
 
 const Operate = ({ record, actions }) => {
   const dispatch = useDispatch();
@@ -24,7 +24,9 @@ const Operate = ({ record, actions }) => {
         break;
     }
   };
-  const edit = () => {};
+  const edit = () => {
+    dispatch(getEditDetail({ params: { batchId: record.id } }));
+  };
   const detail = () => {
     console.log(record);
     dispatch(getBatchDetail({ params: { batchId: record.id } }));

@@ -6,7 +6,7 @@
  * @Description:
  */
 import {
-  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH, SET_POSITIONS_MAINBATCH, SET_MAXNUMBERS_MAINBATCH, SET_FORM_ADD_VISIABLE_MAINBATCH, SET_DETAIL_MAINBATCH, SET_FORM_DETAIL_VISIABLE_MAINBATCH,
+  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH, SET_POSITIONS_MAINBATCH, SET_MAXNUMBERS_MAINBATCH, SET_FORM_ADD_VISIABLE_MAINBATCH, SET_DETAIL_MAINBATCH, SET_FORM_DETAIL_VISIABLE_MAINBATCH, SET_FORM_EDIT_VISIABLE_MAINBATCH, SET_EDIT_DETAIL_MAINBATCH,
 } from '../actionTypes';
 
 const defaultState = {
@@ -24,11 +24,15 @@ const defaultState = {
   maxNumbers: undefined,
   isFormAddVisiable: false,
   isFormDetailVisiable: false,
+  isFormEditVisiable: false,
   detail: {
     batch: {},
     selected: {},
     template: [],
     allocInfo: [],
+  },
+  editDetail: {
+
   },
 };
 export default (state = defaultState, action) => {
@@ -50,6 +54,10 @@ export default (state = defaultState, action) => {
     case SET_DETAIL_MAINBATCH:
       return { ...state, ...action.data };
     case SET_FORM_DETAIL_VISIABLE_MAINBATCH:
+      return { ...state, ...action.data };
+    case SET_FORM_EDIT_VISIABLE_MAINBATCH:
+      return { ...state, ...action.data };
+    case SET_EDIT_DETAIL_MAINBATCH:
       return { ...state, ...action.data };
     default:
       return state;

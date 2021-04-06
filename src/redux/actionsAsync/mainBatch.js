@@ -6,9 +6,11 @@ import {
   setMaxNumbersAction,
   setDetailAction,
   setFormDetailVisiableAction,
+  setEditDetailAction,
+  setFormEditVisiableAction,
 } from '../actions/mainBatch';
 import {
-  getMainBatchListService, getPositionListService, getCheckNumbersService, addBatchService, getBatchDetailService,
+  getMainBatchListService, getPositionListService, getCheckNumbersService, addBatchService, getBatchDetailService, getEditInfoService, batchAllotService,
 } from '../../service/mainBatch';
 import { getEngineerConfigService } from '../../service/engineer';
 
@@ -69,6 +71,27 @@ export const getBatchDetail = (params) => async (dispatch) => {
     dispatch(setDetailAction({ detail }));
     dispatch(setFormDetailVisiableAction({ isFormDetailVisible: true }));
   } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getEditDetail = (params) => async (dispatch) => {
+  // debugger;
+  try {
+    const editDetail = await getEditInfoService(params);
+    dispatch(setEditDetailAction({ editDetail: { ...editDetail, batchId: params.params.batchId } }));
+    dispatch(setFormEditVisiableAction({ isFormEditVisiable: true }));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const batchAllot = (data, successCB = () => {}, faileCB = () => {}) => async () => {
+  try {
+    await batchAllotService(data);
+    successCB();
+  } catch (error) {
+    faileCB();
     console.log(error);
   }
 };

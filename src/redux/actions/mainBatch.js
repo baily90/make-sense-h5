@@ -1,5 +1,5 @@
 import {
-  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH, SET_POSITIONS_MAINBATCH, SET_MAXNUMBERS_MAINBATCH, SET_FORM_ADD_VISIABLE_MAINBATCH, SET_DETAIL_MAINBATCH, SET_FORM_DETAIL_VISIABLE_MAINBATCH,
+  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH, SET_POSITIONS_MAINBATCH, SET_MAXNUMBERS_MAINBATCH, SET_FORM_ADD_VISIABLE_MAINBATCH, SET_DETAIL_MAINBATCH, SET_FORM_DETAIL_VISIABLE_MAINBATCH, SET_FORM_EDIT_VISIABLE_MAINBATCH, SET_EDIT_DETAIL_MAINBATCH,
 } from '../actionTypes';
 
 const getListAction = (data) => ({
@@ -44,6 +44,16 @@ const setFormDetailVisiableAction = (data) => ({
   data,
 });
 
+const setFormEditVisiableAction = (data) => ({
+  type: SET_FORM_EDIT_VISIABLE_MAINBATCH,
+  data,
+});
+
+const setEditDetailAction = (data) => ({
+  type: SET_EDIT_DETAIL_MAINBATCH,
+  data,
+});
+
 export {
   getListAction,
   setLoadingAction,
@@ -54,4 +64,6 @@ export {
   setFormAddVisiableAction,
   setDetailAction,
   setFormDetailVisiableAction,
+  setFormEditVisiableAction,
+  setEditDetailAction,
 };
