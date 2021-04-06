@@ -13,3 +13,12 @@ export function getCheckNumbersService(params, args) {
 export function addBatchService(data, args) {
   return axiosWrap.post(api.mainBatch.addBatch, data, args);
 }
+export function getBatchDetailService(params, args) {
+  return axiosWrap.get(api.mainBatch.batchDetail, params, args);
+}
+export function getEditInfoService(params, args) {
+  return axiosWrap.get(api.mainBatch.editInfo, params, args);
+}
+export function batchAllotService(data, args) {
+  return axiosWrap.post(api.mainBatch.batchAllot, data, args);
+}

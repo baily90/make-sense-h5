@@ -42,7 +42,7 @@ const Search = () => {
   };
 
   const showFormAddModal = () => {
-    dispatch(setFormAddVisiableAction({ isFormAddVisible: true }));
+    dispatch(setFormAddVisiableAction({ isFormAddVisiable: true }));
   };
   return (
     <Form

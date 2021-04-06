@@ -6,7 +6,7 @@
  * @Description:
  */
 import {
-  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH, SET_POSITIONS_MAINBATCH, SET_MAXNUMBERS_MAINBATCH, SET_FORM_ADD_VISIABLE_ENGINEER,
+  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH, SET_POSITIONS_MAINBATCH, SET_MAXNUMBERS_MAINBATCH, SET_FORM_ADD_VISIABLE_MAINBATCH, SET_DETAIL_MAINBATCH, SET_FORM_DETAIL_VISIABLE_MAINBATCH,
 } from '../actionTypes';
 
 const defaultState = {
@@ -22,7 +22,14 @@ const defaultState = {
   config: { products: [], roles: [] },
   positions: [],
   maxNumbers: undefined,
-  isFormAddVisible: false,
+  isFormAddVisiable: false,
+  isFormDetailVisiable: false,
+  detail: {
+    batch: {},
+    selected: {},
+    template: [],
+    allocInfo: [],
+  },
 };
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -38,7 +45,11 @@ export default (state = defaultState, action) => {
       return { ...state, ...action.data };
     case SET_MAXNUMBERS_MAINBATCH:
       return { ...state, ...action.data };
-    case SET_FORM_ADD_VISIABLE_ENGINEER:
+    case SET_FORM_ADD_VISIABLE_MAINBATCH:
+      return { ...state, ...action.data };
+    case SET_DETAIL_MAINBATCH:
+      return { ...state, ...action.data };
+    case SET_FORM_DETAIL_VISIABLE_MAINBATCH:
       return { ...state, ...action.data };
     default:
       return state;

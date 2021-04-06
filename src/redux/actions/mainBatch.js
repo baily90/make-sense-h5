@@ -1,5 +1,5 @@
 import {
-  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH, SET_POSITIONS_MAINBATCH, SET_MAXNUMBERS_MAINBATCH, SET_FORM_ADD_VISIABLE_ENGINEER,
+  GET_DATA_MAINBATCH, SET_LOADING_MAINBATCH, SET_SEARCH_PARAMS_MAINBATCH, GET_CONFIG_MAINBATCH, SET_POSITIONS_MAINBATCH, SET_MAXNUMBERS_MAINBATCH, SET_FORM_ADD_VISIABLE_MAINBATCH, SET_DETAIL_MAINBATCH, SET_FORM_DETAIL_VISIABLE_MAINBATCH,
 } from '../actionTypes';
 
 const getListAction = (data) => ({
@@ -30,7 +30,17 @@ const setMaxNumbersAction = (data) => ({
 });
 
 const setFormAddVisiableAction = (data) => ({
-  type: SET_FORM_ADD_VISIABLE_ENGINEER,
+  type: SET_FORM_ADD_VISIABLE_MAINBATCH,
+  data,
+});
+
+const setDetailAction = (data) => ({
+  type: SET_DETAIL_MAINBATCH,
+  data,
+});
+
+const setFormDetailVisiableAction = (data) => ({
+  type: SET_FORM_DETAIL_VISIABLE_MAINBATCH,
   data,
 });
 
@@ -42,4 +52,6 @@ export {
   setPostionAction,
   setMaxNumbersAction,
   setFormAddVisiableAction,
+  setDetailAction,
+  setFormDetailVisiableAction,
 };

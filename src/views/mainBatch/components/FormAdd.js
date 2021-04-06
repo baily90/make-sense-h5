@@ -27,7 +27,7 @@ const FormAdd = () => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const searchParams = useSelector((state) => state.mainBatch.searchParams);
-  const isFormAddVisible = useSelector((state) => state.mainBatch.isFormAddVisible);
+  const isFormAddVisiable = useSelector((state) => state.mainBatch.isFormAddVisiable);
   const config = useSelector((state) => state.mainBatch.config);
   const positions = useSelector((state) => state.mainBatch.positions);
   const maxNumbers = useSelector((state) => state.mainBatch.maxNumbers);
@@ -35,12 +35,12 @@ const FormAdd = () => {
   const regionPositionsOptions = positions.map((item) => ({ label: item.name, value: item.id }));
 
   useEffect(() => {
-    if (!isFormAddVisible) {
+    if (!isFormAddVisiable) {
       form.resetFields();
       dispatch(setPostionAction({ positions: [] }));
       dispatch(setMaxNumbersAction({ maxNumbers: undefined }));
     }
-  }, [isFormAddVisible]);
+  }, [isFormAddVisiable]);
 
   const onRegionChange = (regionId) => {
     dispatch(getPosition(regionId));
@@ -67,7 +67,7 @@ const FormAdd = () => {
     dispatch(addBatch(values, () => {
       console.log('success');
       setLoaing(false);
-      dispatch(setFormAddVisiableAction({ isFormAddVisible: false }));
+      dispatch(setFormAddVisiableAction({ isFormAddVisiable: false }));
       dispatch(getMainBatchList({ params: searchParams }));
     }, () => {
       console.log('error');
@@ -76,13 +76,13 @@ const FormAdd = () => {
   };
 
   const closeFormModal = () => {
-    dispatch(setFormAddVisiableAction({ isFormAddVisible: false }));
+    dispatch(setFormAddVisiableAction({ isFormAddVisiable: false }));
   };
 
   return (
     <Modal
       title="新建批次"
-      visible={isFormAddVisible}
+      visible={isFormAddVisiable}
       footer={null}
       onCancel={closeFormModal}
       destroyOnClose

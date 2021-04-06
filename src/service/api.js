@@ -18,6 +18,9 @@ export default {
     getPositionList: '/batch/region/positions',
     getCheckNumbers: '/batch/check/numbers',
     addBatch: '/batch/add',
+    editInfo: '/batch/edit/info',
+    batchAllot: '/batch/allot',
+    batchDetail: '/batch/detail',
   },
   template: {
     getTemplateList: '/template/properties/list',

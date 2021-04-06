@@ -4,9 +4,11 @@ import {
   getConfigAction,
   setPostionAction,
   setMaxNumbersAction,
+  setDetailAction,
+  setFormDetailVisiableAction,
 } from '../actions/mainBatch';
 import {
-  getMainBatchListService, getPositionListService, getCheckNumbersService, addBatchService,
+  getMainBatchListService, getPositionListService, getCheckNumbersService, addBatchService, getBatchDetailService,
 } from '../../service/mainBatch';
 import { getEngineerConfigService } from '../../service/engineer';
 
@@ -57,6 +59,16 @@ export const addBatch = (data, successCB = () => {}, faileCB = () => {}) => asyn
     successCB();
   } catch (error) {
     faileCB();
+    console.log(error);
+  }
+};
+
+export const getBatchDetail = (params) => async (dispatch) => {
+  try {
+    const detail = await getBatchDetailService(params);
+    dispatch(setDetailAction({ detail }));
+    dispatch(setFormDetailVisiableAction({ isFormDetailVisible: true }));
+  } catch (error) {
     console.log(error);
   }
 };

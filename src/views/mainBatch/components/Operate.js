@@ -1,8 +1,11 @@
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { useConfirm } from '../../../common/hooks';
+import { getBatchDetail } from '../../../redux/actionsAsync/mainBatch';
 
 const Operate = ({ record, actions }) => {
+  const dispatch = useDispatch();
   const handler = (item) => {
     switch (item.code) {
       case 'edit':
@@ -24,6 +27,7 @@ const Operate = ({ record, actions }) => {
   const edit = () => {};
   const detail = () => {
     console.log(record);
+    dispatch(getBatchDetail({ params: { batchId: record.id } }));
   };
   const stop = () => {
     useConfirm('确定停止标注?', () => {
