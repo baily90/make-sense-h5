@@ -22,6 +22,10 @@ export default {
     batchAllot: '/batch/allot',
     batchDetail: '/batch/detail',
   },
+  subBatch: {
+    getSubBatchList: '/subBatch/list',
+    getSubBatchDetail: '/subBatch/detail',
+  },
   template: {
     getTemplateList: '/template/properties/list',
     addTemplate: '/template/properties/add',

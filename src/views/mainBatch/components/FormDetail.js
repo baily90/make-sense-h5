@@ -7,12 +7,12 @@ import { setFormDetailVisiableAction } from '../../../redux/actions/mainBatch';
 const { Item } = Descriptions;
 const FormDetail = () => {
   const dispatch = useDispatch();
-  const isFormDetailVisible = useSelector((state) => state.mainBatch.isFormDetailVisible);
+  const isFormDetailVisible = useSelector((state) => state.mainBatch.isFormDetailVisiable);
   const {
     batch, selected, template, allocInfo,
   } = useSelector((state) => state.mainBatch.detail);
   const closeFormModal = () => {
-    dispatch(setFormDetailVisiableAction({ isFormDetailVisible: false }));
+    dispatch(setFormDetailVisiableAction({ isFormDetailVisiable: false }));
   };
 
   return (

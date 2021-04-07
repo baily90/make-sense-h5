@@ -69,14 +69,13 @@ export const getBatchDetail = (params) => async (dispatch) => {
   try {
     const detail = await getBatchDetailService(params);
     dispatch(setDetailAction({ detail }));
-    dispatch(setFormDetailVisiableAction({ isFormDetailVisible: true }));
+    dispatch(setFormDetailVisiableAction({ isFormDetailVisiable: true }));
   } catch (error) {
     console.log(error);
   }
 };
 
 export const getEditDetail = (params) => async (dispatch) => {
-  // debugger;
   try {
     const editDetail = await getEditInfoService(params);
     dispatch(setEditDetailAction({ editDetail: { ...editDetail, batchId: params.params.batchId } }));

@@ -1,8 +1,11 @@
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { useConfirm } from '../../../common/hooks';
+import { getSubBatchDetail } from '../../../redux/actionsAsync/subBatch';
 
 const Operate = ({ record, actions }) => {
+  const dispatch = useDispatch();
   const handler = (item) => {
     switch (item.code) {
       case 'detail':
@@ -19,7 +22,7 @@ const Operate = ({ record, actions }) => {
     }
   };
   const detail = () => {
-    console.log(record);
+    dispatch(getSubBatchDetail({ params: { subBatchId: record.id } }));
   };
   const stop = () => {
     useConfirm('停止标注后该批次剩余数量将回到主批次，确定停止标注?', () => {
