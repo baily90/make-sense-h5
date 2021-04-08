@@ -28,9 +28,6 @@ const FormAdd = () => {
   const [total, setTotal] = useState(editDetail.residualDistributeNum);
   const [used, setUsed] = useState(0);
   const [isEngineerModalVisiable, setIsEngineerModalVisiable] = useState(false);
-  const [selectedEngineers, setSelectedEngineers] = useState([]);
-
-  console.log(`selectedEngineers:${JSON.stringify(selectedEngineers)}`);
 
   useEffect(() => {
     setTotal(editDetail.residualDistributeNum);
@@ -74,8 +71,8 @@ const FormAdd = () => {
 
   const onSetSelectedEngineers = (values) => {
     batchedUpdates(() => {
-      setSelectedEngineers(values);
       setIsEngineerModalVisiable(false);
+      form.setFieldsValue({ batchs: values });
     });
   };
 
@@ -119,20 +116,14 @@ const FormAdd = () => {
         </Space>
 
         <Form.List name="batchs">
-          {(fields, { add }) => (
+          {(fields) => (
             <>
-              <Item>
-                <Button type="dashed" onClick={() => add()} block>
-                  Add field
-                </Button>
-              </Item>
               {fields.map(({
                 key, name, fieldKey,
               }) => (
                 <Space key={key} style={{ marginBottom: 8 }}>
                   <Item>
                     姓名：
-                    {JSON.stringify(fields)}
                   </Item>
                   <Item
                     name={[name, 'num']}
