@@ -1,5 +1,5 @@
 import {
-  Modal, Form, Button, Checkbox, Space, Input,
+  Modal, Form, Button, Checkbox, Space, Input, message, InputNumber,
 } from 'antd';
 import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
 import { useEffect, useState } from 'react';
@@ -45,15 +45,17 @@ const FormAdd = () => {
   // }, [isFormAddVisiable]);
 
   const onFinish = (values) => {
-    console.log({ batchId: editDetail.batchId, ...values });
+    const batchs = form.getFieldValue('batchs');
+    if (!batchs || batchs.length === 0) {
+      message.warning('请选择工程师');
+      return;
+    }
     setLoaing(true);
     dispatch(batchAllot({ batchId: editDetail.batchId, ...values }, () => {
-      console.log('success');
       setLoaing(false);
       dispatch(setFormEditVisiableAction({ isFormEditVisiable: false }));
       dispatch(getMainBatchList({ params: searchParams }));
     }, () => {
-      console.log('error');
       setLoaing(false);
     }));
   };
@@ -63,21 +65,45 @@ const FormAdd = () => {
   };
 
   const avatarHandler = () => {
-    console.log(form);
-    // const { length } = form.getFieldValue('batchs');
-    // const temp = editDetail.residualDistributeNum / length;
-    // console.log(temp);
+    const batchs = form.getFieldValue('batchs');
+    if (!batchs || batchs.length === 0) {
+      message.warning('请选择工程师');
+      return;
+    }
+    const balance = editDetail.residualDistributeNum % batchs.length;
+    const avatar = Math.floor(editDetail.residualDistributeNum / batchs.length);
+
+    const arr = batchs.map((item, index) => {
+      if (index === 0) {
+        item.num = avatar + balance;
+      } else {
+        item.num = avatar;
+      }
+
+      return item;
+    });
+    form.setFieldsValue({ batchs: arr });
+    setUsed(editDetail.residualDistributeNum);
   };
 
   const onSetSelectedEngineers = (values) => {
     batchedUpdates(() => {
       setIsEngineerModalVisiable(false);
-      form.setFieldsValue({ batchs: values });
+      const arr = values.map((item) => ({ engineerName: item.label, engineerId: item.value }));
+      form.setFieldsValue({ batchs: arr });
+      setUsed(0);
     });
+  };
+
+  const onNumberChange = () => {
+    const batchs = form.getFieldValue('batchs');
+    const sumNums = batchs.reduce((sum, batch) => sum + batch.num, 0);
+    setUsed(sumNums);
   };
 
   return (
     <Modal
+      width={800}
       title="批次编辑"
       visible={isFormEditVisiable}
       footer={null}
@@ -122,21 +148,27 @@ const FormAdd = () => {
                 key, name, fieldKey,
               }) => (
                 <Space key={key} style={{ marginBottom: 8 }}>
-                  <Item>
-                    姓名：
+                  <Item
+                    label="工程师"
+                    name={[name, 'engineerName']}
+                    fieldKey={[fieldKey, 'engineerName']}
+                  >
+                    <Input style={{ width: 100, border: 0 }} readOnly />
                   </Item>
                   <Item
+                    label="标注数量"
                     name={[name, 'num']}
                     fieldKey={[fieldKey, 'num']}
                     rules={[{ required: true, message: '请输入标注数量' }]}
                   >
-                    <Input placeholder="标注数量" style={{ width: 100 }} />
+                    <InputNumber min={0} onChange={onNumberChange} />
                   </Item>
                   <Item
-                    name={[name, 'last']}
-                    fieldKey={[fieldKey, 'last']}
+                    label="子批次标题"
+                    name={[name, 'title']}
+                    fieldKey={[fieldKey, 'title']}
                   >
-                    <Input placeholder="子批次标题" />
+                    <Input />
                   </Item>
                 </Space>
               ))}
