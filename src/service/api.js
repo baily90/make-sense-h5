@@ -12,6 +12,8 @@ export default {
     getEngineerConfig: '/user/config',
     addUser: '/user/add',
     updateUser: '/user/update',
+    resetPassword: '/user/password/change',
+    destoryEngineer: '/user/cancel',
   },
   mainBatch: {
     getMianPatchList: '/batch/list',
@@ -21,6 +23,7 @@ export default {
     editInfo: '/batch/edit/info',
     batchAllot: '/batch/allot',
     batchDetail: '/batch/detail',
+    stopTagging: '/batch/stop/tagging',
   },
   subBatch: {
     getSubBatchList: '/subBatch/list',
@@ -31,5 +34,6 @@ export default {
     addTemplate: '/template/properties/add',
     updateTemplate: '/template/properties/update',
     getDetail: '/template/properties/detail',
+    changeStatus: '/template/change/status',
   },
 };

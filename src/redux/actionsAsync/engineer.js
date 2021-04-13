@@ -2,7 +2,7 @@ import {
   getListAction, setLoadingAction, getConfigAction, getDetailAction,
 } from '../actions/engineer';
 import {
-  getEngineerListService, getEngineerConfigService, addUserService, updateUserService, getEngineerDetailService,
+  getEngineerListService, getEngineerConfigService, addUserService, updateUserService, getEngineerDetailService, destoryEngineerService, resetPasswordService,
 } from '../../service/engineer';
 
 export const getEngineerList = (params) => async (dispatch) => {
@@ -53,6 +53,24 @@ export const getDetail = (params) => async (dispatch) => {
     const detail = await getEngineerDetailService(params);
     dispatch(getDetailAction({ detail }));
   } catch (error) {
+    console.log(error);
+  }
+};
+
+export const resetPassword = (data) => async () => {
+  try {
+    await resetPasswordService(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const destoryEngineer = (data, successCB = () => {}, faileCB = () => {}) => async () => {
+  try {
+    await destoryEngineerService(data);
+    successCB();
+  } catch (error) {
+    faileCB();
     console.log(error);
   }
 };

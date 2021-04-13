@@ -22,3 +22,6 @@ export function getEditInfoService(params, args) {
 export function batchAllotService(data, args) {
   return axiosWrap.post(api.mainBatch.batchAllot, data, args);
 }
+export function stopTaggingService(data, args) {
+  return axiosWrap.post(api.mainBatch.stopTagging, data, args);
+}

@@ -55,7 +55,7 @@ export const actions = [
   {
     code: 'up',
     name: '上架',
-    type: 'default',
+    type: 'danger',
   },
   {
     code: 'down',

@@ -16,3 +16,9 @@ export function addUserService(data, args) {
 export function updateUserService(data, args) {
   return axiosWrap.post(api.engineer.updateUser, data, args);
 }
+export function resetPasswordService(data, args) {
+  return axiosWrap.post(api.engineer.resetPassword, data, args);
+}
+export function destoryEngineerService(data, args) {
+  return axiosWrap.post(api.engineer.destoryEngineer, data, args);
+}

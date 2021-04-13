@@ -1,12 +1,17 @@
+import React, { memo, useMemo } from 'react';
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useConfirm } from '../../../common/hooks';
 import { setFormTypeAction, setFormVisiableAction } from '../../../redux/actions/engineer';
-import { getDetail } from '../../../redux/actionsAsync/engineer';
+import {
+  getDetail, resetPassword, destoryEngineer, getEngineerList,
+} from '../../../redux/actionsAsync/engineer';
 
-const Operate = ({ record, actions }) => {
+const Operate = memo(({ record, actions }) => {
   const dispatch = useDispatch();
+  const searchParams = useSelector((state) => state.engineer.searchParams);
+
   const handler = (item) => {
     switch (item.code) {
       case 'edit':
@@ -17,6 +22,9 @@ const Operate = ({ record, actions }) => {
         break;
       case 'reset':
         reset();
+        break;
+      case 'start':
+        start();
         break;
       case 'destroy':
         destroy();
@@ -40,22 +48,41 @@ const Operate = ({ record, actions }) => {
     dispatch(setFormVisiableAction({ isFormVisible: true }));
   };
   const reset = () => {
-    console.log(record);
     useConfirm('确定重置密码?', () => {
-      console.log('重置密码');
+      dispatch(resetPassword({ userId: record.id }));
+    });
+  };
+  const start = () => {
+    useConfirm('确定启用?', () => {
+      dispatch(destoryEngineer({ userId: record.id }, () => {
+        dispatch(getEngineerList({ params: searchParams }));
+      }));
     });
   };
   const destroy = () => {
-    console.log(record);
     useConfirm('确定销户?', () => {
-      console.log('销户');
+      dispatch(destoryEngineer({ userId: record.id }, () => {
+        dispatch(getEngineerList({ params: searchParams }));
+      }));
     });
   };
   const log = () => {};
+
+  const buttonList = useMemo(() => {
+    const { status } = record;
+    let flagArray = [];
+    if (Number(status) === 2) {
+      flagArray = ['edit', 'detail', 'start', 'log'];
+    } else {
+      flagArray = ['edit', 'detail', 'reset', 'destroy', 'log'];
+    }
+    return actions.filter((item) => flagArray.includes(item.code));
+  }, [record, actions]);
+
   return (
     <>
       {
-        actions.map((item) => (
+        buttonList.map((item) => (
           <Button
             style={{ marginRight: 10 }}
             key={item.code}
@@ -68,7 +95,7 @@ const Operate = ({ record, actions }) => {
       }
     </>
   );
-};
+});
 Operate.defaultProps = {
   record: {},
 };

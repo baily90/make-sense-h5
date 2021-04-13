@@ -16,3 +16,6 @@ export function updateTemplateService(data, args) {
 export function getTemplateDetailService(params, args) {
   return axiosWrap.get(api.template.getDetail, params, args);
 }
+export function changeStatusService(data, args) {
+  return axiosWrap.post(api.template.changeStatus, data, args);
+}

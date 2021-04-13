@@ -1,11 +1,16 @@
+import React, { memo, useMemo } from 'react';
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useConfirm } from '../../../common/hooks';
-import { getBatchDetail, getEditDetail } from '../../../redux/actionsAsync/mainBatch';
+import {
+  getMainBatchList, getBatchDetail, getEditDetail, stopTagging,
+} from '../../../redux/actionsAsync/mainBatch';
 
-const Operate = ({ record, actions }) => {
+const Operate = memo(({ record, actions }) => {
   const dispatch = useDispatch();
+  const searchParams = useSelector((state) => state.mainBatch.searchParams);
+
   const handler = (item) => {
     switch (item.code) {
       case 'edit':
@@ -28,19 +33,34 @@ const Operate = ({ record, actions }) => {
     dispatch(getEditDetail({ params: { batchId: record.id } }));
   };
   const detail = () => {
-    console.log(record);
     dispatch(getBatchDetail({ params: { batchId: record.id } }));
   };
   const stop = () => {
     useConfirm('确定停止标注?', () => {
-      console.log('停止标注');
+      dispatch(stopTagging({ batchId: record.id }, () => {
+        dispatch(getMainBatchList({ params: searchParams }));
+      }));
     });
   };
   const log = () => {};
+
+  const buttonList = useMemo(() => {
+    const { status } = record;
+    let flagArray = [];
+    if (Number(status) === 1) {
+      flagArray = ['edit', 'detail', 'stop', 'log'];
+    } else if (Number(status) === 3) {
+      flagArray = ['detail', 'stop', 'log'];
+    } else {
+      flagArray = ['detail', 'log'];
+    }
+    return actions.filter((item) => flagArray.includes(item.code));
+  }, [record, actions]);
+
   return (
     <>
       {
-        actions.map((item) => (
+        buttonList.map((item) => (
           <Button
             style={{ marginRight: 10 }}
             key={item.code}
@@ -53,7 +73,7 @@ const Operate = ({ record, actions }) => {
       }
     </>
   );
-};
+});
 Operate.defaultProps = {
   record: {},
 };

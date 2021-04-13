@@ -9,6 +9,7 @@ import {
   addTemplateService,
   updateTemplateService,
   getTemplateDetailService,
+  changeStatusService,
 } from '../../service/template';
 import { getEngineerConfigService } from '../../service/engineer';
 
@@ -60,6 +61,16 @@ export const getDetail = (params) => async (dispatch) => {
     const detail = await getTemplateDetailService(params);
     dispatch(setDetailAction({ detail }));
   } catch (error) {
+    console.log(error);
+  }
+};
+
+export const changeStatus = (data, successCB = () => {}, faileCB = () => {}) => async () => {
+  try {
+    await changeStatusService(data);
+    successCB();
+  } catch (error) {
+    faileCB();
     console.log(error);
   }
 };

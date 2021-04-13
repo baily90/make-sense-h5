@@ -64,6 +64,11 @@ export const actions = [
     type: 'default',
   },
   {
+    code: 'start',
+    name: '启用',
+    type: 'danger',
+  },
+  {
     code: 'destroy',
     name: '销户',
     type: 'danger',

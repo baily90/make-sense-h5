@@ -1,12 +1,15 @@
+import React, { memo, useMemo } from 'react';
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useConfirm } from '../../../common/hooks';
 import { setFormTypeAction, setFormVisiableAction } from '../../../redux/actions/template';
-import { getDetail } from '../../../redux/actionsAsync/template';
+import { getTemplateList, getDetail, changeStatus } from '../../../redux/actionsAsync/template';
 
-const Operate = ({ record, actions }) => {
+const Operate = memo(({ record, actions }) => {
   const dispatch = useDispatch();
+  const searchParams = useSelector((state) => state.template.searchParams);
+
   const handler = (item) => {
     switch (item.code) {
       case 'edit':
@@ -33,20 +36,35 @@ const Operate = ({ record, actions }) => {
   };
   const up = () => {
     useConfirm('确定上架?', () => {
-      console.log('上架');
+      dispatch(changeStatus({ id: record.id, status: 1 }, () => {
+        dispatch(getTemplateList({ params: searchParams }));
+      }));
     });
   };
   const down = () => {
     useConfirm('确定下架?', () => {
-      console.log('下架');
+      dispatch(changeStatus({ id: record.id, status: 2 }, () => {
+        dispatch(getTemplateList({ params: searchParams }));
+      }));
     });
   };
   const log = () => {};
 
+  const buttonList = useMemo(() => {
+    const { status } = record;
+    let flagArray = ['edit', 'log'];
+    if (Number(status) === 1) {
+      flagArray = ['edit', 'up', 'log'];
+    } else if (Number(status) === 2) {
+      flagArray = ['edit', 'down', 'log'];
+    }
+    return actions.filter((item) => flagArray.includes(item.code));
+  }, [record, actions]);
+
   return (
     <>
       {
-        actions.map((item) => (
+        buttonList.map((item) => (
           <Button
             style={{ marginRight: 10 }}
             key={item.code}
@@ -59,7 +77,7 @@ const Operate = ({ record, actions }) => {
       }
     </>
   );
-};
+});
 Operate.defaultProps = {
   record: {},
 };

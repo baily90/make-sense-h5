@@ -10,7 +10,7 @@ import {
   setFormEditVisiableAction,
 } from '../actions/mainBatch';
 import {
-  getMainBatchListService, getPositionListService, getCheckNumbersService, addBatchService, getBatchDetailService, getEditInfoService, batchAllotService,
+  getMainBatchListService, getPositionListService, getCheckNumbersService, addBatchService, getBatchDetailService, getEditInfoService, batchAllotService, stopTaggingService,
 } from '../../service/mainBatch';
 import { getEngineerConfigService } from '../../service/engineer';
 
@@ -88,6 +88,16 @@ export const getEditDetail = (params) => async (dispatch) => {
 export const batchAllot = (data, successCB = () => {}, faileCB = () => {}) => async () => {
   try {
     await batchAllotService(data);
+    successCB();
+  } catch (error) {
+    faileCB();
+    console.log(error);
+  }
+};
+
+export const stopTagging = (data, successCB = () => {}, faileCB = () => {}) => async () => {
+  try {
+    await stopTaggingService(data);
     successCB();
   } catch (error) {
     faileCB();
