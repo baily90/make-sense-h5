@@ -1,0 +1,21 @@
+.shimmer {
+    width: 100%;
+    padding-top: 100px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bolder;
+    letter-spacing: 10px;
+    color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(to right, #ed8080 0%, #2a77d6 16%, #5eb524 32%, #eacd25 48%, #ed8080 64%, #2a77d6 80%, #5eb524 100%) top left;
+    background-size: 300% 300%;
+    background-clip: text;
+    animation: shimmer infinite 3s linear;
+}
+@keyframes shimmer {
+  0% {
+      background-position: top right;
+  }
+  100% {
+      background-position: top left;
+  }
+}

@@ -5,11 +5,11 @@
  * @LastEditors: zhangyanlong
  * @Description:
  */
+import './index.scss';
+
 const Home = () => (
   <>
-    home
-    {/* <p style={{ height: '500px' }}>1</p> */}
-    {/* <p style={{ height: '500px' }}>1</p> */}
+    <h1 className="shimmer">标注系统运营管理后台</h1>
   </>
 );
 

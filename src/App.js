@@ -9,7 +9,6 @@ import React, { useEffect, useState } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
-import Login from './views/login';
 import './assets/css/app.scss';
 import './assets/css/common.scss';
 import TopHeader from './views/layout/topHeader';
@@ -42,7 +41,6 @@ const App = () => {
   return (
     <HashRouter>
       {/* <Switch> */}
-      <Route path="/login" exact component={Login} />
       <Layout style={{ height: '100vh' }}>
         <SideMenu routesConfig={menuConfig} />
         <Layout>
