@@ -65,6 +65,7 @@ const SideMenu = ({ routesConfig }) => {
     <Sider trigger={null} collapsible collapsed={isCollapsed} className="app-sider">
       <div className="logo" />
       <Menu
+        key={defaultSelectedKeys}
         defaultOpenKeys={[defaultOpenKeys]}
         defaultSelectedKeys={[defaultSelectedKeys]}
         theme="dark"

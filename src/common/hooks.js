@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import isEmpty from 'lodash/isEmpty';
 import { Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -22,4 +23,4 @@ export const useConfirm = (content, onOkCB) => {
     onOk: () => onOkCB(),
   });
 };
-export const useText = () => {};
+export const useQuery = () => new URLSearchParams(useLocation().search);

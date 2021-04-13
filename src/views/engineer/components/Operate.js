@@ -1,5 +1,6 @@
 import React, { memo, useMemo } from 'react';
 import { Button } from 'antd';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useConfirm } from '../../../common/hooks';
@@ -11,6 +12,7 @@ import {
 const Operate = memo(({ record, actions }) => {
   const dispatch = useDispatch();
   const searchParams = useSelector((state) => state.engineer.searchParams);
+  const history = useHistory();
 
   const handler = (item) => {
     switch (item.code) {
@@ -66,7 +68,9 @@ const Operate = memo(({ record, actions }) => {
       }));
     });
   };
-  const log = () => {};
+  const log = () => {
+    history.push(`/log?type=1&code=${record.id}`);
+  };
 
   const buttonList = useMemo(() => {
     const { status } = record;

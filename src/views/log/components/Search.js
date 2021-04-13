@@ -1,10 +1,16 @@
 import {
   Form, Select, Button, Input,
 } from 'antd';
+import { useQuery } from '../../../common/hooks';
 
 const { Option } = Select;
 const Search = () => {
   const [form] = Form.useForm();
+  const query = useQuery();
+  const initialValues = {
+    type: query.get('type'),
+    code: query.get('code'),
+  };
 
   const onFinish = (values) => {
     console.log(values);
@@ -18,6 +24,7 @@ const Search = () => {
       layout="inline"
       form={form}
       onFinish={onFinish}
+      initialValues={initialValues}
     >
       <Form.Item
         label="日志模块"
